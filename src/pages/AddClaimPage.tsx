@@ -1,6 +1,6 @@
 import { Grid } from "@mui/material";
 import axios from "axios";
-import React from "react";
+import React, { useState } from "react";
 import { Resolver, SubmitHandler, useForm } from "react-hook-form";
 import ClaimService from "../api/ClaimService";
 import MyInput from "../components/UI/MyInput";
@@ -14,6 +14,10 @@ interface FormValues {
 }
 
 const AddClaim = () => {
+  const [title, setTitle] = useState("");
+  const [type, setType] = useState("");
+  const [description, setDescription] = useState("");
+
   const {
     register,
     handleSubmit,
@@ -31,20 +35,24 @@ const AddClaim = () => {
         component="form"
         direction="column"
       >
-        <Grid style={{ marginTop: 30 }}>
+        <Grid style={{ marginTop: 30 }} xs={6}>
           <MyInput
+            value={title}
             title="TITLE"
             register={{ ...register("title", { required: true }) }}
             errors={errors.title}
             placeholder="Type claim"
+            onChange={setTitle}
           />
         </Grid>
-        <Grid style={{ marginTop: 30 }}>
+        <Grid style={{ marginTop: 30 }} xs={6}>
           <MySelect
             title="TYPE"
             register={{ ...register("type", { required: true }) }}
             errors={errors.title}
             placeholder="Select type"
+            onSelect={setType}
+            defaultValue={type}
             options={[
               {
                 name: "Hardware",
@@ -65,14 +73,17 @@ const AddClaim = () => {
             ]}
           />
         </Grid>
-        <Grid style={{ marginTop: 30 }}>
+        <Grid style={{ marginTop: 30 }} xs={6}>
           <MyInput
             title="DESCRIPTION"
+            value={description}
             register={{ ...register("description") }}
             placeholder="Type claim description"
+            onChange={setDescription}
           />
         </Grid>
         <Grid style={{ marginTop: 30 }}>
+          <button>Cancel</button>
           <button type="submit">Create</button>
         </Grid>
       </Grid>

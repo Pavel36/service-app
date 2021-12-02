@@ -2,32 +2,6 @@ import { Grid, Table, TableRow, TableCell, TableBody, TableHead, TableContainer,
 import React from 'react'
 import ClaimItem from './ClaimItem'
 
-const mockClaims = [
-    {
-        title:'Figma smart web system for to build',
-        created:'12/04/2021',
-        type:'Hardware',
-        status:'DECLINED'
-    },
-    {
-        title:'Figma smart web system for to build',
-        created:'12/04/2021',
-        type:'Software',
-        status:'NEW'
-    },
-    {
-        title:'Figma smart web system for to build',
-        created:'12/04/2021',
-        type:'Troubleshooting',
-        status:'IN PROGRESS'
-    },
-    {
-        title:'Figma smart web system for to build',
-        created:'12/04/2021',
-        type:'Networking',
-        status:'DONE'
-    }
-]
 
 const ClaimList = (props:any) => {
     return (
@@ -44,7 +18,7 @@ const ClaimList = (props:any) => {
             </TableHead>
             <TableBody>
             {props.data.map((claim:any)=>
-                <ClaimItem key={claim.createdAt} claimTitle={claim.title} claimCreated={claim.createdAt} claimType={claim.type.name} claimStatus={claim.status.name}/>
+                <ClaimItem key={claim.createdAt} claimTitle={claim.title} claimCreated={claim.createdAt} claimType={claim.type} claimStatus={claim.status}/>
             )}
             </TableBody>
         </Table>

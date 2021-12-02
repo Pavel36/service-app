@@ -13,6 +13,15 @@ export default class ClaimService {
     const response = await axios.get(this.#apiUrl, config);
     return response;
   }
+  static async getClaim(id) {
+    let config = {
+      headers: {
+        Authorization: this.#curToken,
+      },
+    };
+    const response = await axios.get(`${this.#apiUrl}/${id}`, config);
+    return response;
+  }
   static async addClaim(data) {
     let config = {
       headers: {
@@ -22,8 +31,8 @@ export default class ClaimService {
     const response = await axios.post(this.#apiUrl, data, config);
     return response;
   }
-  static async editClaim(data) {
-    let url = `${this.#apiUrl}/${data._id}`
+  static async editClaim(id,data) {
+    let url = `${this.#apiUrl}/${id}`
     let config = {
       headers: {
         Authorization: this.#curToken,

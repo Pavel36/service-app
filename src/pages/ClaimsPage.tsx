@@ -3,8 +3,36 @@ import React, { useState, useEffect } from 'react'
 import ClaimService from '../api/ClaimService'
 import ClaimList from '../components/ClaimList'
 import axios from 'axios'
-import MyButton from '../components/UI/MyButton'
+import MyButton, { ButtonVariant } from '../components/UI/MyButton'
 import { currToken } from '../token'
+
+
+const mockClaims = [
+    {
+        title:'Figma smart web system for to build',
+        created:'12/04/2021',
+        type:'Hardware',
+        status:'DECLINED'
+    },
+    {
+        title:'Figma smart web system for to build',
+        created:'12/04/2021',
+        type:'Software',
+        status:'NEW'
+    },
+    {
+        title:'Figma smart web system for to build',
+        created:'12/04/2021',
+        type:'Troubleshooting',
+        status:'IN PROGRESS'
+    },
+    {
+        title:'Figma smart web system for to build',
+        created:'12/04/2021',
+        type:'Networking',
+        status:'DONE'
+    }
+]
 
 const ClaimsPage = () => {
     const [claims,setClaims] = useState([])
@@ -13,19 +41,18 @@ const ClaimsPage = () => {
     useEffect(() => {
       setClaimsLoading(true)
       ClaimService.getAll().then((resp) => {
+        
         const claims = resp.data.claims;
         setClaims(claims);
     });
       setClaimsLoading(false)
     }, [setClaims])
-
-    console.log(claims);
     
     
     return (
       <Grid container direction='column'>
         <Grid marginTop='20px' style={{justifyContent:'end'}}>
-          <MyButton>
+          <MyButton variant={ButtonVariant.submit}>
             + Create claim
           </MyButton>
         </Grid>
