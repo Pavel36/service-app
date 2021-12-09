@@ -8,7 +8,7 @@ export enum ButtonVariant {
 
 interface IMyButtonProps {
   children: ReactChild | ReactNode;
-  variant: ButtonVariant
+  variant: ButtonVariant;
 }
 
 const MyButton: FC<IMyButtonProps> = ({ children, variant }) => {

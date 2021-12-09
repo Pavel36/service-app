@@ -3,9 +3,7 @@ import React from "react";
 
 const MyInput = (props: any) => {
   return (
-    <div
-      style={{ display: "inline-block", float: "left", width:"100%" }}
-    >
+    <div style={{ display: "inline-block", float: "left", width: "100%" }}>
       <label style={{ display: "block" }}>{props.title}</label>
       <input
         {...props.register}
@@ -15,7 +13,7 @@ const MyInput = (props: any) => {
           border: "none",
           padding: 13,
           outline: "none",
-          width: '100%'
+          width: "100%",
         }}
         placeholder={props.placeholder}
         value={props.value}

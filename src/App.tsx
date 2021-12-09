@@ -16,7 +16,7 @@ function App() {
     setLoading(true);
     ClaimService.getClaim("618cdef960a2a69429ffa76c").then((resp) => {
       const claim = resp.data;
-      
+
       setEditedClaim(claim);
     });
     setLoading(false);
@@ -31,6 +31,7 @@ function App() {
         <Header />
         <ClaimsPage />
         <AddClaimPage />
+        {loading ? <div>loading</div> : <EditClaimPage claim={editedClaim} />}
       </Grid>
     </Grid>
   );

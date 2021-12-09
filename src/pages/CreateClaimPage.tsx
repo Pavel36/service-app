@@ -1,11 +1,7 @@
-import React from 'react'
+import React from "react";
 
 const CreateClaimPage = () => {
-    return (
-        <div>
-            
-        </div>
-    )
-}
+  return <div></div>;
+};
 
-export default CreateClaimPage
+export default CreateClaimPage;

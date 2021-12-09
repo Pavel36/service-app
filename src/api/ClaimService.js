@@ -31,8 +31,8 @@ export default class ClaimService {
     const response = await axios.post(this.#apiUrl, data, config);
     return response;
   }
-  static async editClaim(id,data) {
-    let url = `${this.#apiUrl}/${id}`
+  static async editClaim(id, data) {
+    let url = `${this.#apiUrl}/${id}`;
     let config = {
       headers: {
         Authorization: this.#curToken,

@@ -118,7 +118,7 @@ const ClaimItem: FC<IClaimItemProps> = ({
 
       {claimType ? claimTypeSwitch(claimType) : <TableCell></TableCell>}
       {claimStatus ? claimStatusSwitch(claimStatus) : <TableCell></TableCell>}
-      
+
       <TableCell>
         <Link href="#">Browse</Link>
       </TableCell>

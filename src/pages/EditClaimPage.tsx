@@ -11,26 +11,23 @@ interface FormValues {
   title: string;
   type: string;
   description: string;
-  status:string;
+  status: string;
 }
 
 const EditClaimPage = (props: any) => {
-
   const [title, setTitle] = useState(props.claim.title);
   const [type, setType] = useState(props.claim.type.name);
   const [description, setDescription] = useState(props.claim.description);
   const [status, setStatus] = useState(props.claim.status.name);
 
-  
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm<FormValues>();
-  const onSubmit: SubmitHandler<FormValues> = (data) =>{
-    ClaimService.editClaim(props.claim._id,data);
-  }
-    
+  const onSubmit: SubmitHandler<FormValues> = (data) => {
+    ClaimService.editClaim(props.claim._id, data);
+  };
 
   return (
     <Grid>
