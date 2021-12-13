@@ -13,7 +13,7 @@ interface FormValues {
   description: string;
 }
 
-const AddClaim = () => {
+const AddClaimPage = () => {
   const [title, setTitle] = useState("");
   const [type, setType] = useState("");
   const [description, setDescription] = useState("");
@@ -91,4 +91,4 @@ const AddClaim = () => {
   );
 };
 
-export default AddClaim;
+export default AddClaimPage;

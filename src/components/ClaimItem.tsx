@@ -1,5 +1,7 @@
-import { Chip, Grid, TableCell, TableRow, Link } from "@mui/material";
+import { Chip, Grid, TableCell, TableRow } from "@mui/material";
+import {Link} from "react-router-dom";
 import React, { FC } from "react";
+import { RouteNames } from "../router";
 
 enum claimTypes {
   Hardware,
@@ -120,7 +122,7 @@ const ClaimItem: FC<IClaimItemProps> = ({
       {claimStatus ? claimStatusSwitch(claimStatus) : <TableCell></TableCell>}
 
       <TableCell>
-        <Link href="#">Browse</Link>
+        <Link to={RouteNames.EDIT_CLAIM}>Browse</Link>
       </TableCell>
     </TableRow>
   );

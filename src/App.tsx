@@ -1,6 +1,7 @@
 import { Grid } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import ClaimService from "./api/ClaimService";
+import AppRouter from "./components/AppRouter";
 import Header from "./components/Layout/Header";
 import Sidebar from "./components/Layout/Sidebar";
 import AddClaimPage from "./pages/AddClaimPage";
@@ -28,10 +29,7 @@ function App() {
         <Sidebar />
       </Grid>
       <Grid xs={11}>
-        <Header />
-        <ClaimsPage />
-        <AddClaimPage />
-        {loading ? <div>loading</div> : <EditClaimPage claim={editedClaim} />}
+        <AppRouter/>
       </Grid>
     </Grid>
   );

@@ -1,4 +1,4 @@
-import React, { FC, ReactChild, ReactNode } from "react";
+import React, { FC } from "react";
 
 export enum ButtonVariant {
   submit = "submit",
@@ -7,7 +7,6 @@ export enum ButtonVariant {
 }
 
 interface IMyButtonProps {
-  children: ReactChild | ReactNode;
   variant: ButtonVariant;
 }
 
