@@ -7,6 +7,7 @@ import MyButton from "../components/UI/MyButton";
 import { useForm, Resolver } from "react-hook-form";
 import { useDispatch } from "react-redux";
 import { AuthActionCreators } from "../store/reducers/auth/action-creators";
+import { useTypedSelector } from "../hooks/useTypedSelector";
 
 interface FormValues {
   email: string;
@@ -29,6 +30,7 @@ const resolver: Resolver<FormValues> = async (values) => {
 
 const LoginPage = () => {
   const dispatch = useDispatch()
+  const {error, isLoading} = useTypedSelector(state=>state.auth)
   const {
     register,
     handleSubmit,
@@ -54,7 +56,13 @@ const LoginPage = () => {
           md={6}
         >
           <img src={mainLogo} alt="" />
-          <form onSubmit={onSubmit}>
+          <Grid
+            container
+            onSubmit={onSubmit}
+            component="form"
+            direction="column"
+          >
+            {error && <Grid>{error}</Grid>}
             <Grid>
               <label>
                 E-MAIL
@@ -72,7 +80,7 @@ const LoginPage = () => {
               {errors?.password && <p>{errors.password.message}</p>}
             </label>
             <input type="submit" value="Login" />
-          </form>
+          </Grid>
           <Grid sx={{ textAlign: "center" }}>
             Not a member? <Link>Request registration.</Link>
           </Grid>
