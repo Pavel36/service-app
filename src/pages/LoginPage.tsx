@@ -5,6 +5,8 @@ import footerLogo from "./Group5.svg";
 import { Grid, Link } from "@mui/material";
 import MyButton from "../components/UI/MyButton";
 import { useForm, Resolver } from "react-hook-form";
+import { useDispatch } from "react-redux";
+import { AuthActionCreators } from "../store/reducers/auth/action-creators";
 
 interface FormValues {
   email: string;
@@ -26,12 +28,13 @@ const resolver: Resolver<FormValues> = async (values) => {
 };
 
 const LoginPage = () => {
+  const dispatch = useDispatch()
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm<FormValues>({ resolver });
-  const onSubmit = handleSubmit((data) => console.log(data));
+  const onSubmit = handleSubmit((data) => dispatch(AuthActionCreators.login(data)));
 
   return (
     <Grid>
