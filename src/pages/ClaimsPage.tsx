@@ -7,6 +7,7 @@ import MyButton, { ButtonVariant } from "../components/UI/MyButton";
 import { currToken } from "../token";
 import { useNavigate } from "react-router";
 import { RouteNames } from "../router";
+import Header from "../components/Layout/Header";
 
 const mockClaims = [
   {
@@ -51,6 +52,7 @@ const ClaimsPage = () => {
 
   return (
     <Grid container direction="column">
+      <Header/>
       <Grid marginTop="20px" style={{ justifyContent: "end" }}>
         <MyButton variant={ButtonVariant.submit} onClick={()=>navigate(RouteNames.ADD_CLAIM)}>
           + Create claim

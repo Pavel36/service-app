@@ -4,8 +4,11 @@ import LogOutIcon from './icon-log-out.svg'
 import AvatarIcon from './Ivan.png'
 import BellIcon from './icon-bell.svg'
 import SearchIcon from './icon-search.svg'
+import { useDispatch } from 'react-redux'
+import { AuthActionCreators } from '../../store/reducers/auth/action-creators'
 
 const Header = () => {
+    const dispatch = useDispatch()
     return (
         <Grid container direction='row'>
             <Input
@@ -17,7 +20,8 @@ const Header = () => {
             }/>
             <img src={BellIcon} alt=''/>
             <Avatar alt="Ivan Ivanov" src={AvatarIcon} />
-            <img src={LogOutIcon} alt=''/>
+            <button style={{background:'transparent', border: 0, cursor: 'pointer'}} onClick={()=>dispatch(AuthActionCreators.logout())}><img src={LogOutIcon} alt=''/></button>
+            
         </Grid>
     )
 }

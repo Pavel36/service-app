@@ -47,5 +47,9 @@ export const AuthActionCreators = {
       dispatch(AuthActionCreators.setError("You must Log In"));
     }
   },
-  logout: () => async (dispatch: AppDispatch) => {},
+  logout: () => async (dispatch: AppDispatch) => {
+      localStorage.clear();
+      dispatch(AuthActionCreators.setUser({} as IUser))
+      dispatch(AuthActionCreators.setIsAuth(false))
+  },
 };
