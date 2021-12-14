@@ -8,11 +8,13 @@ export enum ButtonVariant {
 
 interface IMyButtonProps {
   variant: ButtonVariant;
+  onClick?: () => void
 }
 
-const MyButton: FC<IMyButtonProps> = ({ children, variant }) => {
+const MyButton: FC<IMyButtonProps> = ({ children, variant, onClick }) => {
   return (
     <button
+      onClick={onClick}
       style={{
         color: "#FFF",
         backgroundColor: "#7DB59A",

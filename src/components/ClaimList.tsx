@@ -27,7 +27,8 @@ const ClaimList = (props: any) => {
         <TableBody>
           {props.data.map((claim: any) => (
             <ClaimItem
-              key={claim.createdAt}
+              id={claim._id}
+              key={claim._id}
               claimTitle={claim.title}
               claimCreated={claim.createdAt}
               claimType={claim.type}

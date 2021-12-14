@@ -5,6 +5,8 @@ import ClaimList from "../components/ClaimList";
 import axios from "axios";
 import MyButton, { ButtonVariant } from "../components/UI/MyButton";
 import { currToken } from "../token";
+import { useNavigate } from "react-router";
+import { RouteNames } from "../router";
 
 const mockClaims = [
   {
@@ -34,6 +36,7 @@ const mockClaims = [
 ];
 
 const ClaimsPage = () => {
+  const navigate = useNavigate();
   const [claims, setClaims] = useState([]);
   const [claimsLoading, setClaimsLoading] = useState(false);
 
@@ -49,7 +52,9 @@ const ClaimsPage = () => {
   return (
     <Grid container direction="column">
       <Grid marginTop="20px" style={{ justifyContent: "end" }}>
-        <MyButton variant={ButtonVariant.submit}>+ Create claim</MyButton>
+        <MyButton variant={ButtonVariant.submit} onClick={()=>navigate(RouteNames.ADD_CLAIM)}>
+          + Create claim
+        </MyButton>
       </Grid>
       <Grid marginTop="20px">
         {claimsLoading ? <div>loading</div> : <ClaimList data={claims} />}

@@ -18,6 +18,7 @@ enum claimStatusTypes {
 }
 
 interface IClaimItemProps {
+  id:string;
   claimTitle?: string;
   claimCreated?: string;
   claimType?: any;
@@ -108,6 +109,7 @@ const claimStatusSwitch = (claimStatus: any) => {
 };
 
 const ClaimItem: FC<IClaimItemProps> = ({
+  id,
   claimTitle,
   claimCreated,
   claimType,
@@ -122,7 +124,7 @@ const ClaimItem: FC<IClaimItemProps> = ({
       {claimStatus ? claimStatusSwitch(claimStatus) : <TableCell></TableCell>}
 
       <TableCell>
-        <Link to={RouteNames.EDIT_CLAIM}>Browse</Link>
+        <Link to={`/claims/${id}`}>Browse</Link>
       </TableCell>
     </TableRow>
   );

@@ -11,9 +11,9 @@ export interface IRoute {
 
 export enum RouteNames {
   LOGIN = "/login",
-  ALL_CLAIMS = "/",
-  ADD_CLAIM = "/add",
-  EDIT_CLAIM = "/edit/:claimId",
+  ALL_CLAIMS = "/claims",
+  ADD_CLAIM = "/claims/add",
+  EDIT_CLAIM = "/claims/:claimId",
 }
 
 export const publicRoutes: IRoute[] = [

@@ -1,6 +1,6 @@
 import { Grid } from "@mui/material";
 import axios from "axios";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import ClaimService from "../api/ClaimService";
 import MyInput from "../components/UI/MyInput";
@@ -19,6 +19,17 @@ const EditClaimPage = (props: any) => {
   const [type, setType] = useState(props.claim.type.name);
   const [description, setDescription] = useState(props.claim.description);
   const [status, setStatus] = useState(props.claim.status.name);
+  const [loading, setLoading] = useState(false);
+  const [editedClaim, setEditedClaim] = useState();
+
+  useEffect(() => {
+    setLoading(true);
+    ClaimService.getClaim("618cdef960a2a69429ffa76c").then((resp) => {
+      const claim = resp.data;
+      setEditedClaim(claim);
+    });
+    setLoading(false);
+  }, [editedClaim]);
 
   const {
     register,
@@ -29,7 +40,9 @@ const EditClaimPage = (props: any) => {
     ClaimService.editClaim(props.claim._id, data);
   };
 
-  return (
+  return loading ? (
+    <div>loading</div>
+  ) : (
     <Grid>
       <Grid style={{ fontSize: 36, fontWeight: 700 }}>Incoming claim</Grid>
       <Grid
