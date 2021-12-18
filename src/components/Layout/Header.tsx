@@ -6,6 +6,7 @@ import BellIcon from './icon-bell.svg'
 import SearchIcon from './icon-search.svg'
 import { useDispatch } from 'react-redux'
 import { AuthActionCreators } from '../../store/reducers/auth/action-creators'
+import { useTypedSelector } from '../../hooks/useTypedSelector'
 
 const Header = () => {
     const dispatch = useDispatch()

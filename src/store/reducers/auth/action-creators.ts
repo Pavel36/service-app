@@ -28,19 +28,24 @@ export const AuthActionCreators = {
   login: (data: any) => async (dispatch: AppDispatch) => {
     try {
       dispatch(AuthActionCreators.setIsLoading(true));
-      const userCreds = AuthService.login(data).then((resp) => {
+      AuthService.login(data).then((resp) => {
         if (!resp.data.message) {
-            localStorage.setItem('auth','true');
-            localStorage.setItem('email', resp.data.email)
-            localStorage.setItem('fullname', resp.data.fullName)
-            localStorage.setItem('role', resp.data.role.name)
-            //TODO: DELETE NEXT LINE
-            localStorage.setItem('token', resp.data.token)
-            /////
-          dispatch(AuthActionCreators.setIsAuth(true));
+          let user: IUser = {
+            email: resp.data.email,
+            token: resp.data.token,
+            role: resp.data.role.name,
+            role_slug: resp.data.role.slug,
+            fullName: resp.data.fullName,
+          };
+          localStorage.setItem("auth", "true");
+          localStorage.setItem("token", resp.data.token);
+          console.log(localStorage.getItem("token"));
 
+          dispatch(AuthActionCreators.setUser(user));
+          dispatch(AuthActionCreators.setIsAuth(true));
+          dispatch(AuthActionCreators.setIsLoading(false));
         } else {
-            dispatch(AuthActionCreators.setError(resp.data.message))
+          dispatch(AuthActionCreators.setError(resp.data.message));
         }
       });
     } catch (e) {
@@ -48,8 +53,9 @@ export const AuthActionCreators = {
     }
   },
   logout: () => async (dispatch: AppDispatch) => {
-      localStorage.clear();
-      dispatch(AuthActionCreators.setUser({} as IUser))
-      dispatch(AuthActionCreators.setIsAuth(false))
+    localStorage.removeItem("auth");
+    localStorage.removeItem("token");
+    dispatch(AuthActionCreators.setUser({} as IUser));
+    dispatch(AuthActionCreators.setIsAuth(false));
   },
 };

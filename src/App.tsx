@@ -1,15 +1,29 @@
 import { Grid } from "@mui/material";
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
 import AppRouter from "./components/AppRouter";
 import Sidebar from "./components/Layout/Sidebar";
+import { checkToken } from "./services/checkToken";
+import { AuthActionCreators } from "./store/reducers/auth/action-creators";
 
 function App() {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    if (localStorage.getItem("auth")) {
+      checkToken(
+        () => dispatch(AuthActionCreators.logout()),
+        () => dispatch(AuthActionCreators.setIsAuth(true))
+      );
+    }
+  });
+
   return (
     <Grid container direction="row" className="App">
       <Grid>
         <Sidebar />
       </Grid>
       <Grid xs={11}>
-        <AppRouter/>
+        <AppRouter />
       </Grid>
     </Grid>
   );

@@ -5,7 +5,6 @@ import { Resolver, SubmitHandler, useForm } from "react-hook-form";
 import ClaimService from "../api/ClaimService";
 import MyInput from "../components/UI/MyInput";
 import MySelect from "../components/UI/MySelect";
-import { currToken } from "../token.js";
 
 interface FormValues {
   title: string;

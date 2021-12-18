@@ -2,10 +2,10 @@ import { Grid } from "@mui/material";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
+import { useLocation } from "react-router-dom";
 import ClaimService from "../api/ClaimService";
 import MyInput from "../components/UI/MyInput";
 import MySelect from "../components/UI/MySelect";
-import { currToken } from "../token";
 
 interface FormValues {
   title: string;
@@ -15,21 +15,26 @@ interface FormValues {
 }
 
 const EditClaimPage = (props: any) => {
-  const [title, setTitle] = useState(props.claim.title);
-  const [type, setType] = useState(props.claim.type.name);
-  const [description, setDescription] = useState(props.claim.description);
-  const [status, setStatus] = useState(props.claim.status.name);
+  const location = useLocation();
+  const [title, setTitle] = useState("");
+  const [type, setType] = useState("");
+  const [description, setDescription] = useState("");
+  const [status, setStatus] = useState("");
   const [loading, setLoading] = useState(false);
   const [editedClaim, setEditedClaim] = useState();
 
   useEffect(() => {
     setLoading(true);
-    ClaimService.getClaim("618cdef960a2a69429ffa76c").then((resp) => {
+    ClaimService.getClaim(location.state).then((resp) => {
       const claim = resp.data;
       setEditedClaim(claim);
+      setTitle(claim.title);
+      setType(claim.type.name);
+      setDescription(claim.description);
+      setStatus(claim.status.name);
     });
     setLoading(false);
-  }, [editedClaim]);
+  }, []);
 
   const {
     register,

@@ -115,6 +115,7 @@ const ClaimItem: FC<IClaimItemProps> = ({
   claimType,
   claimStatus,
 }) => {
+  
   return (
     <TableRow>
       <TableCell>{claimTitle}</TableCell>
@@ -124,7 +125,7 @@ const ClaimItem: FC<IClaimItemProps> = ({
       {claimStatus ? claimStatusSwitch(claimStatus) : <TableCell></TableCell>}
 
       <TableCell>
-        <Link to={`/claims/${id}`}>Browse</Link>
+        <Link to={`/claims/${id}`} state={id}>Browse</Link>
       </TableCell>
     </TableRow>
   );

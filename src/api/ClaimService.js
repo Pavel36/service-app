@@ -1,13 +1,12 @@
 import axios from "axios";
-import { currToken } from "../token";
+import { getToken } from "../services/getToken";
 
 export default class ClaimService {
   static #apiUrl = "https://mysterious-tundra-84714.herokuapp.com/claim";
-  static #curToken = currToken;
   static async getAll() {
     let config = {
       headers: {
-        Authorization: this.#curToken,
+        Authorization: getToken(),
       },
     };
     const response = await axios.get(this.#apiUrl, config);
@@ -16,7 +15,7 @@ export default class ClaimService {
   static async getClaim(id) {
     let config = {
       headers: {
-        Authorization: this.#curToken,
+        Authorization: getToken(),
       },
     };
     const response = await axios.get(`${this.#apiUrl}/${id}`, config);
@@ -25,7 +24,7 @@ export default class ClaimService {
   static async addClaim(data) {
     let config = {
       headers: {
-        Authorization: this.#curToken,
+        Authorization: getToken(),
       },
     };
     const response = await axios.post(this.#apiUrl, data, config);
@@ -35,7 +34,7 @@ export default class ClaimService {
     let url = `${this.#apiUrl}/${id}`;
     let config = {
       headers: {
-        Authorization: this.#curToken,
+        Authorization: getToken(),
       },
     };
     const response = await axios.put(url, data, config);
