@@ -14,11 +14,11 @@ const MyInput = (props: any) => {
           padding: 13,
           outline: "none",
           width: "100%",
+          ...props.style,
         }}
         placeholder={props.placeholder}
         value={props.value}
         onInput={(val: any) => {
-          console.log(val.target.value);
           props.onChange(val.target.value);
         }}
       />

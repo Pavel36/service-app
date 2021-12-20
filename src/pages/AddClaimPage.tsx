@@ -2,6 +2,7 @@ import { Grid } from "@mui/material";
 import axios from "axios";
 import React, { useState } from "react";
 import { Resolver, SubmitHandler, useForm } from "react-hook-form";
+import { useNavigate } from "react-router";
 import ClaimService from "../api/ClaimService";
 import MyInput from "../components/UI/MyInput";
 import MySelect from "../components/UI/MySelect";
@@ -10,9 +11,11 @@ interface FormValues {
   title: string;
   type: string;
   description: string;
+  status: string;
 }
 
 const AddClaimPage = () => {
+  const navigate = useNavigate();
   const [title, setTitle] = useState("");
   const [type, setType] = useState("");
   const [description, setDescription] = useState("");
@@ -22,8 +25,11 @@ const AddClaimPage = () => {
     handleSubmit,
     formState: { errors },
   } = useForm<FormValues>();
-  const onSubmit: SubmitHandler<FormValues> = (data) =>
-    ClaimService.addClaim(data);
+  const onSubmit: SubmitHandler<FormValues> = async (data) =>{
+    data.status='new';
+    await ClaimService.addClaim(data);
+    navigate(-1);
+  }
 
   return (
     <Grid>

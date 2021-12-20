@@ -21,6 +21,15 @@ export default class ClaimService {
     const response = await axios.get(`${this.#apiUrl}/${id}`, config);
     return response;
   }
+  static async searchClaim(text) {
+    let config = {
+      headers: {
+        Authorization: getToken(),
+      },
+    };
+    const response = await axios.get(`${this.#apiUrl}?search=${text}`, config);
+    return response;
+  }
   static async addClaim(data) {
     let config = {
       headers: {
