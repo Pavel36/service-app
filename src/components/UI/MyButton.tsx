@@ -8,7 +8,7 @@ export enum ButtonVariant {
 
 interface IMyButtonProps {
   variant: ButtonVariant;
-  onClick?: () => void
+  onClick?: () => void;
 }
 
 const MyButton: FC<IMyButtonProps> = ({ children, variant, onClick }) => {
