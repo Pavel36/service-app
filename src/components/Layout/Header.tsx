@@ -1,5 +1,5 @@
 import { Avatar, Grid, Input, InputAdornment } from "@mui/material";
-import React, { useState } from "react";
+import React, { FC, useState } from "react";
 import LogOutIcon from "./icon-log-out.svg";
 import AvatarIcon from "./Ivan.png";
 import BellIcon from "./icon-bell.svg";
@@ -10,28 +10,57 @@ import { useTypedSelector } from "../../hooks/useTypedSelector";
 import MyInput from "../UI/MyInput";
 import ClaimService from "../../api/ClaimService";
 
-const Header = () => {
+interface IHeaderProps {
+  setLoading: (loading: boolean) => void;
+  setFilterdClaims: (claims: any) => void;
+}
+
+const Header: FC<IHeaderProps> = ({ setLoading, setFilterdClaims }) => {
   const dispatch = useDispatch();
   const [searchString, setSearchString] = useState("");
+
+  const handleSearchClick = () => {
+    setLoading(true);
+    ClaimService.searchClaim(searchString).then((resp) => {
+      setFilterdClaims(resp.data.claims);
+      setLoading(false);
+    });
+  };
+
+  const handleLogOutClick = () => {
+    dispatch(AuthActionCreators.logout());
+  };
+
   return (
-    <Grid container direction="row">
+    <Grid container sx={{ width: "100%", border: '1px solid' }} direction="row">
       <MyInput
         placeholder="Search"
         style={{ width: "30%" }}
         onChange={setSearchString}
       />
       <button
+        style={{ background: "transparent", border: 0, cursor: "pointer" }}
         onClick={() => {
-          const resp = ClaimService.searchClaim(searchString);
+          handleSearchClick();
         }}
       >
-        search
+        <img src={SearchIcon} alt="" />
       </button>
-      <img src={BellIcon} alt="" />
-      <Avatar alt="Ivan Ivanov" src={AvatarIcon} />
       <button
         style={{ background: "transparent", border: 0, cursor: "pointer" }}
-        onClick={() => dispatch(AuthActionCreators.logout())}
+        onClick={() => {}}
+      >
+        <img src={BellIcon} alt="" />
+      </button>
+      <button
+        style={{ background: "transparent", border: 0, cursor: "pointer" }}
+        onClick={() => {}}
+      >
+        <Avatar alt="Ivan Ivanov" src={AvatarIcon} />
+      </button>
+      <button
+        style={{ background: "transparent", border: 0, cursor: "pointer" }}
+        onClick={() => handleLogOutClick()}
       >
         <img src={LogOutIcon} alt="" />
       </button>

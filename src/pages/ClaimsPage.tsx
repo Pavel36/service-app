@@ -7,10 +7,12 @@ import { useNavigate } from "react-router";
 import { RouteNames } from "../router";
 import Header from "../components/Layout/Header";
 import { useTypedSelector } from "../hooks/useTypedSelector";
+import { PuffLoader } from "react-spinners";
 
 const ClaimsPage = () => {
   const navigate = useNavigate();
   const [claims, setClaims] = useState([]);
+  const [pageLoading, setPageLoading] = useState(false);
   const [claimsLoading, setClaimsLoading] = useState(false);
 
   useEffect(() => {
@@ -19,15 +21,14 @@ const ClaimsPage = () => {
       const claims = resp.data.claims;
       setClaims(claims);
     });
-
     setClaimsLoading(false);
-  },[]);
+  }, []);
 
-  return claimsLoading ? (
-    <div>loading</div>
+  return pageLoading ? (
+    <PuffLoader/>
   ) : (
     <Grid container direction="column">
-      <Header />
+      <Header setLoading={setClaimsLoading} setFilterdClaims={setClaims} />
       <Grid marginTop="20px" style={{ justifyContent: "end" }}>
         <MyButton
           variant={ButtonVariant.submit}
@@ -37,7 +38,7 @@ const ClaimsPage = () => {
         </MyButton>
       </Grid>
       <Grid marginTop="20px">
-        <ClaimList data={claims} />
+        {claimsLoading ? <Grid><PuffLoader/></Grid> : <ClaimList data={claims} />}
       </Grid>
     </Grid>
   );
