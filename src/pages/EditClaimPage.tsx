@@ -30,9 +30,9 @@ const EditClaimPage = (props: any) => {
       const claim = resp.data;
       setEditedClaim(claim);
       setTitle(claim.title);
-      setType(claim.type.name);
+      setType(claim.type?.name);
       setDescription(claim.description);
-      setStatus(claim.status.name);
+      setStatus(claim.status?.name);
     });
     setLoading(false);
   }, []);
