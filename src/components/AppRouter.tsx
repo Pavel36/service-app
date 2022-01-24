@@ -2,7 +2,7 @@ import { Grid } from "@mui/material";
 import React from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
 import { useTypedSelector } from "../hooks/useTypedSelector";
-import { privateRoutes, publicRoutes, RouteNames } from "../router";
+import { userRoutes, publicRoutes, PublicRouteNames, UserRouteNames } from "../router";
 import Sidebar from "./Layout/Sidebar";
 
 const AppRouter = () => {
@@ -14,14 +14,14 @@ const AppRouter = () => {
       </Grid>
       <Grid item xs={11} sx={{paddingRight:8}}>
         <Routes>
-          {privateRoutes.map((route) => (
+          {userRoutes.map((route) => (
             <Route
               path={route.path}
               element={<route.component />}
               key={route.path}
             />
           ))}
-          <Route path="*" element={<Navigate to={RouteNames.ALL_CLAIMS} />} />
+          <Route path="*" element={<Navigate to={UserRouteNames.ALL_CLAIMS} />} />
         </Routes>
       </Grid>
     </Grid>
@@ -35,7 +35,7 @@ const AppRouter = () => {
             key={route.path}
           />
         ))}
-        <Route path="*" element={<Navigate to={RouteNames.LOGIN} />} />
+        <Route path="*" element={<Navigate to={PublicRouteNames.LOGIN} />} />
       </Routes>
     </Grid>
   );

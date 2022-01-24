@@ -1,7 +1,7 @@
 import { Chip, Grid, TableCell, TableRow } from "@mui/material";
 import {Link} from "react-router-dom";
 import React, { FC } from "react";
-import { RouteNames } from "../router";
+import { UserRouteNames } from "../router";
 
 enum claimTypes {
   Hardware,

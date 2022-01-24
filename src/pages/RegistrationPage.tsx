@@ -7,6 +7,8 @@ import { useForm, Resolver } from "react-hook-form";
 import { useDispatch } from "react-redux";
 import { AuthActionCreators } from "../store/reducers/auth/action-creators";
 import { useTypedSelector } from "../hooks/useTypedSelector";
+import MyInput from "../components/UI/MyInput";
+import MyButton, { ButtonType } from "../components/UI/MyButton";
 
 interface FormValuesRegistration {
   email: string;
@@ -64,32 +66,44 @@ const RegistrationPage = () => {
             component="form"
             direction="column"
           >
-            {error && <Grid>{error}</Grid>}
             <Grid>
-              <label>
-                E-MAIL
-                <input type="email" {...register("email")} autoComplete="off" />
-              </label>
+              <MyInput
+                title="E-MAIL"
+                type="email"
+                placeholder="Type your e-mail"
+                register={{ ...register("email") }}
+              />
             </Grid>
 
-            <label>
-              PASSWORD
-              <input
+            <Grid>
+              <MyInput
+                title="PASSWORD"
                 type="password"
-                {...register("password")}
-                autoComplete="off"
+                placeholder="Type your password"
+                register={{ ...register("password") }}
               />
               {errors?.password && <p>{errors.password.message}</p>}
-            </label>
-
-            <Grid>
-              <label>
-                NAME
-                <input type="text" {...register("fullName")} autoComplete="off" />
-              </label>
             </Grid>
 
-            <input type="submit" value="registration" />
+            <Grid>
+              <MyInput
+                title="NAME"
+                type="text"
+                placeholder="Type your name"
+                register={{ ...register("fullName")}}
+              />
+            </Grid>
+
+            {error && <Grid color="#7db59a">{error}</Grid>}
+
+            <Grid>
+              <MyButton
+                style={{ width: "100%" }}
+                type={ButtonType.submit}
+                value="Registration"
+                disabled={isLoading}
+              />
+            </Grid>
           </Grid>
         </Grid>
       </Grid>

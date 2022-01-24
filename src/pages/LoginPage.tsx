@@ -10,6 +10,7 @@ import { useDispatch } from "react-redux";
 import { AuthActionCreators } from "../store/reducers/auth/action-creators";
 import { useTypedSelector } from "../hooks/useTypedSelector";
 import MyInput from "../components/UI/MyInput";
+import { PublicRouteNames } from "../router";
 
 interface FormValues {
   email: string;
@@ -108,7 +109,7 @@ const LoginPage = () => {
             </Grid>
           </Grid>
           <Grid sx={{ textAlign: "center" }}>
-            Not a member? <Link to="/registration">Request registration.</Link>
+            Not a member? <Link to={PublicRouteNames.REGISTRATION}>Request registration.</Link>
           </Grid>
         </Grid>
       </Grid>

@@ -4,7 +4,7 @@ import ClaimService from "../api/ClaimService";
 import ClaimList from "../components/ClaimList";
 import MyButton from "../components/UI/MyButton";
 import { useNavigate } from "react-router";
-import { RouteNames } from "../router";
+import { UserRouteNames } from "../router";
 import Header from "../components/Layout/Header";
 import { useTypedSelector } from "../hooks/useTypedSelector";
 import { PuffLoader } from "react-spinners";
@@ -32,7 +32,7 @@ const ClaimsPage = () => {
       <Header setLoading={setClaimsLoading} setFilterdClaims={setClaims} />
       <Grid marginTop="20px" style={{ justifyContent: "end" }}>
         <MyButton
-          onClick={() => navigate(RouteNames.ADD_CLAIM)}
+          onClick={() => navigate(UserRouteNames.ADD_CLAIM)}
           value="+ Create claim"
         />
       </Grid>
