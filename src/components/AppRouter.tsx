@@ -8,7 +8,7 @@ import Sidebar from "./Layout/Sidebar";
 const AppRouter = () => {
   const isAuth = useTypedSelector((state) => state.auth.isAuth);
   return isAuth ? (
-    <Grid container>
+    <Grid container spacing={3}>
       <Grid item xs={1}>
         <Sidebar />
       </Grid>

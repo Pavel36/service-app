@@ -119,57 +119,55 @@ const ClaimList = (props: any) => {
   };
 
   return (
-    <TableContainer component={Paper} sx={{ maxHeight: 800 }}>
-      <Table stickyHeader>
-        <TableHead>
-          <TableRow>
-            <TableCell>Title</TableCell>
-            <TableCell>Created</TableCell>
-            <TableCell>Type</TableCell>
-            <TableCell>Status</TableCell>
-            <TableCell>Actions</TableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {(rowsPerPage > 0
-            ? props.data.slice(
-                page * rowsPerPage,
-                page * rowsPerPage + rowsPerPage
-              )
-            : props.data
-          ).map((claim: any) => (
-            <ClaimItem
-              id={claim._id}
-              key={claim._id}
-              claimTitle={claim.title}
-              claimCreated={claim.createdAt}
-              claimType={claim.type}
-              claimStatus={claim.status}
-            />
-          ))}
-        </TableBody>
-        <TableFooter>
-          <TableRow>
-            <TablePagination
-              rowsPerPageOptions={[5, 10, 25, { label: "All", value: -1 }]}
-              colSpan={3}
-              count={props.data.length}
-              rowsPerPage={rowsPerPage}
-              page={page}
-              SelectProps={{
-                inputProps: {
-                  "aria-label": "rows per page",
-                },
-                native: true,
-              }}
-              onPageChange={handleChangePage}
-              onRowsPerPageChange={handleChangeRowsPerPage}
-              ActionsComponent={TablePaginationActions}
-            />
-          </TableRow>
-        </TableFooter>
-      </Table>
-    </TableContainer>
+    <Grid>
+      <TableContainer component={Paper} sx={{ maxHeight: 800 }}>
+        <Table stickyHeader>
+          <TableHead>
+            <TableRow>
+              <TableCell>Title</TableCell>
+              <TableCell>Created</TableCell>
+              <TableCell>Type</TableCell>
+              <TableCell>Status</TableCell>
+              <TableCell>Actions</TableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {(rowsPerPage > 0
+              ? props.data.slice(
+                  page * rowsPerPage,
+                  page * rowsPerPage + rowsPerPage
+                )
+              : props.data
+            ).map((claim: any) => (
+              <ClaimItem
+                id={claim._id}
+                key={claim._id}
+                claimTitle={claim.title}
+                claimCreated={claim.createdAt}
+                claimType={claim.type}
+                claimStatus={claim.status}
+              />
+            ))}
+          </TableBody>
+        </Table>
+      </TableContainer>
+      <TablePagination
+        rowsPerPageOptions={[5, 10, 25, { label: "All", value: -1 }]}
+        colSpan={3}
+        count={props.data.length}
+        rowsPerPage={rowsPerPage}
+        page={page}
+        SelectProps={{
+          inputProps: {
+            "aria-label": "rows per page",
+          },
+          native: true,
+        }}
+        onPageChange={handleChangePage}
+        onRowsPerPageChange={handleChangeRowsPerPage}
+        ActionsComponent={TablePaginationActions}
+      />
+    </Grid>
   );
 };
 

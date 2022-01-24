@@ -9,7 +9,18 @@ const MySelect = (props: any) => {
         width: "100%",
       }}
     >
-      <label style={{ display: "block" }}>{props.title}</label>
+      <label
+        style={{
+          display: "block",
+          fontFamily: "Inter",
+          fontWeight: 600,
+          fontSize: "12px",
+          color: "#ADADAD",
+          letterSpacing: "2.5px",
+        }}
+      >
+        {props.title}
+      </label>
       <select
         {...props.register}
         style={{

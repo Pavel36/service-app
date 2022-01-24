@@ -1,11 +1,5 @@
 import React, { FC } from "react";
 
-export enum ButtonColor {
-  submit = "submit",
-  cancel = "cancel",
-  danger = "danger",
-}
-
 export enum ButtonType {
   button = "button",
   submit = "submit",
@@ -15,16 +9,14 @@ export enum ButtonType {
 interface IMyButtonProps {
   value: string;
   type?: ButtonType;
-  variant?: ButtonColor;
   onClick?: () => void;
   disabled?: boolean;
-  style?: StyleSheet;
+  style?: any;
 }
 
 const MyButton: FC<IMyButtonProps> = ({
   value,
   type,
-  variant = ButtonType.submit,
   onClick,
   disabled,
   style,

@@ -85,15 +85,22 @@ const LoginPage = () => {
               {errors?.password && <p>{errors.password.message}</p>}
             </Grid>
             <Grid>
-              <label>
+              <label
+                style={{
+                  fontFamily: "Inter",
+                  fontWeight: 600,
+                  fontSize: "12px",
+                  color: "#ADADAD",
+                }}
+              >
                 <input type="checkbox" />
                 Keep me logged in
-                {errors?.password && <p>{errors.password.message}</p>}
               </label>
             </Grid>
             {error && <Grid color="#7db59a">{error}</Grid>}
             <Grid>
               <MyButton
+                style={{ width: "100%" }}
                 type={ButtonType.submit}
                 value="Login"
                 disabled={isLoading}

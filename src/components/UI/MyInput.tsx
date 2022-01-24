@@ -27,11 +27,21 @@ const MyInput: FC<IMyInputProps> = ({
 }) => {
   const onInput = (e: any) => {
     onChange && onChange(e.target.value);
-    
-  }
+  };
   return (
     <div style={{ display: "inline-block", float: "left", width: "100%" }}>
-      <label style={{ display: "block" }}>{title}</label>
+      <label
+        style={{
+          display: "block",
+          fontFamily: "Inter",
+          fontWeight: 600,
+          fontSize: "12px",
+          color: "#ADADAD",
+          letterSpacing: '2.5px'
+        }}
+      >
+        {title}
+      </label>
       <input
         {...register}
         style={{
