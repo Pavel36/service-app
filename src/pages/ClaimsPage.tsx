@@ -8,6 +8,7 @@ import { RouteNames } from "../router";
 import Header from "../components/Layout/Header";
 import { useTypedSelector } from "../hooks/useTypedSelector";
 import { PuffLoader } from "react-spinners";
+import Sidebar from "../components/Layout/Sidebar";
 
 const ClaimsPage = () => {
   const navigate = useNavigate();
@@ -25,7 +26,7 @@ const ClaimsPage = () => {
   }, []);
 
   return pageLoading ? (
-    <PuffLoader/>
+    <PuffLoader />
   ) : (
     <Grid container direction="column">
       <Header setLoading={setClaimsLoading} setFilterdClaims={setClaims} />
@@ -37,7 +38,13 @@ const ClaimsPage = () => {
         />
       </Grid>
       <Grid marginTop="20px">
-        {claimsLoading ? <Grid><PuffLoader/></Grid> : <ClaimList data={claims} />}
+        {claimsLoading ? (
+          <Grid>
+            <PuffLoader />
+          </Grid>
+        ) : (
+          <ClaimList data={claims} />
+        )}
       </Grid>
     </Grid>
   );

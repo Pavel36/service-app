@@ -19,9 +19,6 @@ function App() {
 
   return (
     <Grid container direction="row" style={{width:'100vw'}} className="App">
-      <Grid>
-        <Sidebar />
-      </Grid>
       <Grid xs={11}>
         <AppRouter />
       </Grid>
