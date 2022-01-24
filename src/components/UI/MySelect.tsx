@@ -13,7 +13,7 @@ const MySelect = (props: any) => {
       <select
         {...props.register}
         style={{
-          background: "#C2C2C2",
+          background: "#F0F0F0",
           borderRadius: "16px",
           padding: 13,
           border: "none",

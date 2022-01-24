@@ -3,12 +3,13 @@ import welcomeImg from "./welcome.png";
 import mainLogo from "./Group4.svg";
 import footerLogo from "./Group5.svg";
 import { Grid } from "@mui/material";
-import {Link} from "react-router-dom";
-import MyButton from "../components/UI/MyButton";
+import { Link } from "react-router-dom";
+import MyButton, { ButtonType } from "../components/UI/MyButton";
 import { useForm, Resolver } from "react-hook-form";
 import { useDispatch } from "react-redux";
 import { AuthActionCreators } from "../store/reducers/auth/action-creators";
 import { useTypedSelector } from "../hooks/useTypedSelector";
+import MyInput from "../components/UI/MyInput";
 
 interface FormValues {
   email: string;
@@ -30,14 +31,16 @@ const resolver: Resolver<FormValues> = async (values) => {
 };
 
 const LoginPage = () => {
-  const dispatch = useDispatch()
-  const {error, isLoading} = useTypedSelector(state=>state.auth)
+  const dispatch = useDispatch();
+  const { error, isLoading } = useTypedSelector((state) => state.auth);
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm<FormValues>({ resolver });
-  const onSubmit = handleSubmit((data) => dispatch(AuthActionCreators.login(data)));
+  const onSubmit = handleSubmit((data) =>
+    dispatch(AuthActionCreators.login(data))
+  );
 
   return (
     <Grid>
@@ -63,38 +66,42 @@ const LoginPage = () => {
             component="form"
             direction="column"
           >
-            {error && <Grid>{error}</Grid>}
             <Grid>
-              <label>
-                E-MAIL
-                <input type="email" {...register("email")} autoComplete="off" />
-              </label>
+              <MyInput
+                title="E-MAIL"
+                type="email"
+                placeholder="Type your e-mail"
+                register={{ ...register("email") }}
+              />
             </Grid>
 
             <Grid>
-              <label>
-                PASSWORD
-                <input
-                  type="password"
-                  {...register("password")}
-                  autoComplete="off"
-                />
-                {errors?.password && <p>{errors.password.message}</p>}
-              </label>
+              <MyInput
+                title="PASSWORD"
+                type="password"
+                placeholder="Type your password"
+                register={{ ...register("password") }}
+              />
+              {errors?.password && <p>{errors.password.message}</p>}
             </Grid>
             <Grid>
               <label>
-                <input
-                  type="checkbox"
-                />
+                <input type="checkbox" />
                 Keep me logged in
                 {errors?.password && <p>{errors.password.message}</p>}
               </label>
             </Grid>
-            <input type="submit" value="Login" />
+            {error && <Grid color="#7db59a">{error}</Grid>}
+            <Grid>
+              <MyButton
+                type={ButtonType.submit}
+                value="Login"
+                disabled={isLoading}
+              />
+            </Grid>
           </Grid>
           <Grid sx={{ textAlign: "center" }}>
-            Not a member? <Link to='/registration'>Request registration.</Link>
+            Not a member? <Link to="/registration">Request registration.</Link>
           </Grid>
         </Grid>
       </Grid>

@@ -1,20 +1,36 @@
 import React, { FC } from "react";
 
-export enum ButtonVariant {
+export enum ButtonColor {
   submit = "submit",
   cancel = "cancel",
   danger = "danger",
 }
 
-interface IMyButtonProps {
-  variant: ButtonVariant;
-  onClick?: () => void;
+export enum ButtonType {
+  button = "button",
+  submit = "submit",
+  reset = "reset",
 }
 
-const MyButton: FC<IMyButtonProps> = ({ children, variant, onClick }) => {
+interface IMyButtonProps {
+  value: string;
+  type?: ButtonType;
+  variant?: ButtonColor;
+  onClick?: () => void;
+  disabled?: boolean;
+  style?: StyleSheet;
+}
+
+const MyButton: FC<IMyButtonProps> = ({
+  value,
+  type,
+  variant = ButtonType.submit,
+  onClick,
+  disabled,
+  style,
+}) => {
   return (
     <button
-      onClick={onClick}
       style={{
         color: "#FFF",
         backgroundColor: "#7DB59A",
@@ -23,9 +39,13 @@ const MyButton: FC<IMyButtonProps> = ({ children, variant, onClick }) => {
         border: "none",
         fontSize: 18,
         padding: "10px 20px",
+        ...style,
       }}
+      type={type}
+      disabled={disabled}
+      onClick={onClick}
     >
-      {children}
+      {value}
     </button>
   );
 };

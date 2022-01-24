@@ -39,19 +39,16 @@ export const AuthActionCreators = {
         localStorage.setItem("auth", "true");
         localStorage.setItem("token", resp.data.token);
         console.log(localStorage.getItem("token"));
-
-        dispatch(AuthActionCreators.setUser(user));
-        dispatch(AuthActionCreators.setIsAuth(true));
         dispatch(AuthActionCreators.setIsLoading(false));
       } else {
         dispatch(AuthActionCreators.setError(resp.data.message));
       }
-    })
+    });
   },
   login: (data: any) => async (dispatch: AppDispatch) => {
-    try {
-      dispatch(AuthActionCreators.setIsLoading(true));
-      AuthService.login(data).then((resp) => {
+    dispatch(AuthActionCreators.setIsLoading(true));
+    AuthService.login(data)
+      .then((resp) => {
         if (!resp.data.message) {
           let user: IUser = {
             email: resp.data.email,
@@ -70,10 +67,10 @@ export const AuthActionCreators = {
         } else {
           dispatch(AuthActionCreators.setError(resp.data.message));
         }
+      })
+      .catch((e) => {
+        dispatch(AuthActionCreators.setError('Wrong e-mail or password'));
       });
-    } catch (e) {
-      dispatch(AuthActionCreators.setError("You must Log In"));
-    }
   },
   logout: () => async (dispatch: AppDispatch) => {
     localStorage.removeItem("auth");

@@ -2,7 +2,7 @@ import { Grid } from "@mui/material";
 import React, { useState, useEffect } from "react";
 import ClaimService from "../api/ClaimService";
 import ClaimList from "../components/ClaimList";
-import MyButton, { ButtonVariant } from "../components/UI/MyButton";
+import MyButton, { ButtonColor } from "../components/UI/MyButton";
 import { useNavigate } from "react-router";
 import { RouteNames } from "../router";
 import Header from "../components/Layout/Header";
@@ -31,11 +31,10 @@ const ClaimsPage = () => {
       <Header setLoading={setClaimsLoading} setFilterdClaims={setClaims} />
       <Grid marginTop="20px" style={{ justifyContent: "end" }}>
         <MyButton
-          variant={ButtonVariant.submit}
+          variant={ButtonColor.submit}
           onClick={() => navigate(RouteNames.ADD_CLAIM)}
-        >
-          + Create claim
-        </MyButton>
+          value="+ Create claim"
+        />
       </Grid>
       <Grid marginTop="20px">
         {claimsLoading ? <Grid><PuffLoader/></Grid> : <ClaimList data={claims} />}

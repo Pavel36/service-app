@@ -1,28 +1,55 @@
-import { Grid, Input } from "@mui/material";
-import React from "react";
+import React, { FC, HTMLInputTypeAttribute } from "react";
+import { FieldError } from "react-hook-form";
+import { InputType } from "zlib";
 
-const MyInput = (props: any) => {
+interface IMyInputProps {
+  value?: string;
+  onChange?: any;
+  placeholder?: string;
+  title?: string;
+  disabled?: boolean;
+  style?: any;
+  register?: any;
+  errors?: FieldError;
+  type?: HTMLInputTypeAttribute;
+}
+
+const MyInput: FC<IMyInputProps> = ({
+  value,
+  onChange,
+  placeholder,
+  title,
+  disabled,
+  style,
+  register,
+  errors,
+  type,
+}) => {
+  const onInput = (e: any) => {
+    onChange && onChange(e.target.value);
+    
+  }
   return (
     <div style={{ display: "inline-block", float: "left", width: "100%" }}>
-      <label style={{ display: "block" }}>{props.title}</label>
+      <label style={{ display: "block" }}>{title}</label>
       <input
-        {...props.register}
+        {...register}
         style={{
-          background: "#C2C2C2",
+          background: "#F0F0F0",
           borderRadius: "16px",
           border: "none",
           padding: 13,
           outline: "none",
           width: "100%",
-          ...props.style,
+          ...style,
         }}
-        placeholder={props.placeholder}
-        value={props.value}
-        onInput={(val: any) => {
-          props.onChange(val.target.value);
-        }}
+        type={type}
+        placeholder={placeholder}
+        value={value}
+        onInput={onInput}
+        autoComplete="off"
       />
-      <div>{props.errors && <span>This field is required</span>}</div>
+      <div>{errors && <span>This field is required</span>}</div>
     </div>
   );
 };
