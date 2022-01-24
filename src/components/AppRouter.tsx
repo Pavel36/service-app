@@ -8,11 +8,11 @@ import Sidebar from "./Layout/Sidebar";
 const AppRouter = () => {
   const isAuth = useTypedSelector((state) => state.auth.isAuth);
   return isAuth ? (
-    <Grid container spacing={3}>
+    <Grid container>
       <Grid item xs={1}>
         <Sidebar />
       </Grid>
-      <Grid item xs={11}>
+      <Grid item xs={11} sx={{paddingRight:8}}>
         <Routes>
           {privateRoutes.map((route) => (
             <Route

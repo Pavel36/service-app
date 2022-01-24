@@ -18,8 +18,8 @@ function App() {
   });
 
   return (
-    <Grid container direction="row" style={{width:'100vw'}} className="App">
-      <Grid xs={11}>
+    <Grid container direction="row" className="App" >
+      <Grid xs={12}>
         <AppRouter />
       </Grid>
     </Grid>

@@ -32,7 +32,7 @@ const Header: FC<IHeaderProps> = ({ setLoading, setFilterdClaims }) => {
   };
 
   return (
-    <Grid container xs={12} borderBottom="2px solid #f0f0f0" paddingBottom="5px" justifyContent="flex-end">
+    <Grid container xs={12} borderBottom="2px solid #f0f0f0" paddingBottom="10px" paddingTop="10px" justifyContent="flex-end">
       <Grid item xs={3}>
         <MyInput
           placeholder="Search"
@@ -40,7 +40,7 @@ const Header: FC<IHeaderProps> = ({ setLoading, setFilterdClaims }) => {
           onChange={setSearchString}
         />
         <button
-          style={{ background: "transparent", border: 0, cursor: "pointer", position: "absolute", left:'65%' }}
+          style={{ background: "transparent", border: 0, cursor: "pointer", position: "absolute", left:'68%' }}
           onClick={() => {
             handleSearchClick();
           }}
