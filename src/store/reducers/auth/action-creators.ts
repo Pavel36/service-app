@@ -25,6 +25,29 @@ export const AuthActionCreators = {
     type: AuthActionEnum.SET_ERROR,
     payload,
   }),
+  register: (data: any) => async (dispatch: AppDispatch) => {
+    dispatch(AuthActionCreators.setIsLoading(true));
+    AuthService.register(data).then((resp) => {
+      if (!resp.data.message) {
+        let user: IUser = {
+          email: resp.data.email,
+          token: resp.data.token,
+          role: resp.data.role.name,
+          role_slug: resp.data.role.slug,
+          fullName: resp.data.fullName,
+        };
+        localStorage.setItem("auth", "true");
+        localStorage.setItem("token", resp.data.token);
+        console.log(localStorage.getItem("token"));
+
+        dispatch(AuthActionCreators.setUser(user));
+        dispatch(AuthActionCreators.setIsAuth(true));
+        dispatch(AuthActionCreators.setIsLoading(false));
+      } else {
+        dispatch(AuthActionCreators.setError(resp.data.message));
+      }
+    })
+  },
   login: (data: any) => async (dispatch: AppDispatch) => {
     try {
       dispatch(AuthActionCreators.setIsLoading(true));

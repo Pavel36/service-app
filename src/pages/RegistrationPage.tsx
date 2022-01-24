@@ -1,21 +1,20 @@
-import React from "react";
+import React, { FC } from "react";
 import welcomeImg from "./welcome.png";
 import mainLogo from "./Group4.svg";
 import footerLogo from "./Group5.svg";
 import { Grid } from "@mui/material";
-import {Link} from "react-router-dom";
-import MyButton from "../components/UI/MyButton";
 import { useForm, Resolver } from "react-hook-form";
 import { useDispatch } from "react-redux";
 import { AuthActionCreators } from "../store/reducers/auth/action-creators";
 import { useTypedSelector } from "../hooks/useTypedSelector";
 
-interface FormValues {
+interface FormValuesRegistration {
   email: string;
   password: string;
+  fullName: string;
 }
 
-const resolver: Resolver<FormValues> = async (values) => {
+const resolver: Resolver<FormValuesRegistration> = async (values) => {
   return {
     values: values.email ? values : {},
     errors: !values.password
@@ -29,15 +28,17 @@ const resolver: Resolver<FormValues> = async (values) => {
   };
 };
 
-const LoginPage = () => {
-  const dispatch = useDispatch()
-  const {error, isLoading} = useTypedSelector(state=>state.auth)
+const RegistrationPage = () => {
+  const dispatch = useDispatch();
+  const { error, isLoading } = useTypedSelector((state) => state.auth);
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<FormValues>({ resolver });
-  const onSubmit = handleSubmit((data) => dispatch(AuthActionCreators.login(data)));
+  } = useForm<FormValuesRegistration>({ resolver });
+  const onSubmit = handleSubmit((data) => {
+    dispatch(AuthActionCreators.register(data));
+  });
 
   return (
     <Grid>
@@ -71,30 +72,24 @@ const LoginPage = () => {
               </label>
             </Grid>
 
+            <label>
+              PASSWORD
+              <input
+                type="password"
+                {...register("password")}
+                autoComplete="off"
+              />
+              {errors?.password && <p>{errors.password.message}</p>}
+            </label>
+
             <Grid>
               <label>
-                PASSWORD
-                <input
-                  type="password"
-                  {...register("password")}
-                  autoComplete="off"
-                />
-                {errors?.password && <p>{errors.password.message}</p>}
+                NAME
+                <input type="text" {...register("fullName")} autoComplete="off" />
               </label>
             </Grid>
-            <Grid>
-              <label>
-                <input
-                  type="checkbox"
-                />
-                Keep me logged in
-                {errors?.password && <p>{errors.password.message}</p>}
-              </label>
-            </Grid>
-            <input type="submit" value="Login" />
-          </Grid>
-          <Grid sx={{ textAlign: "center" }}>
-            Not a member? <Link to='/registration'>Request registration.</Link>
+
+            <input type="submit" value="registration" />
           </Grid>
         </Grid>
       </Grid>
@@ -107,4 +102,4 @@ const LoginPage = () => {
   );
 };
 
-export default LoginPage;
+export default RegistrationPage;

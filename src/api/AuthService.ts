@@ -5,10 +5,22 @@ interface loginData {
     password: string
 }
 
+interface registrationData {
+    fullName: string,
+    email: string,
+    password: string
+}
+
 export default class AuthService {
     static #apiUrl = "https://mysterious-tundra-84714.herokuapp.com";
     static async login(data:loginData) {
         const url = `${this.#apiUrl}/auth/login`
+        const responce = await axios.post(url, data)
+        console.log(responce.data);
+        return responce
+    }
+    static async register(data:registrationData) {
+        const url = `${this.#apiUrl}/auth/registration`
         const responce = await axios.post(url, data)
         console.log(responce.data);
         return responce
