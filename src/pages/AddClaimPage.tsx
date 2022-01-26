@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import { Resolver, SubmitHandler, useForm } from "react-hook-form";
 import { useNavigate } from "react-router";
 import ClaimService from "../api/ClaimService";
+import MyButton, { ButtonType } from "../components/UI/MyButton";
 import MyInput from "../components/UI/MyInput";
 import MySelect from "../components/UI/MySelect";
 
@@ -87,9 +88,20 @@ const AddClaimPage = () => {
             onChange={setDescription}
           />
         </Grid>
-        <Grid style={{ marginTop: 30 }}>
-          <button>Cancel</button>
-          <button type="submit">Create</button>
+        <Grid style={{ marginTop: 30 }} container spacing={2}>
+          <Grid item>
+            <MyButton
+              value="Cancel"
+              style={{
+                backgroundColor: "#fff",
+                color: "#858585",
+                border: "1px solid",
+              }}
+            />
+          </Grid>
+          <Grid item>
+            <MyButton value="Done" type={ButtonType.submit} />
+          </Grid>
         </Grid>
       </Grid>
     </Grid>
