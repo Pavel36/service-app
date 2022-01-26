@@ -4,6 +4,9 @@ import ClaimsPage from "../pages/user/ClaimsPage";
 import EditClaimPage from "../pages/user/EditClaimPage";
 import LoginPage from "../pages/public/LoginPage";
 import RegistrationPage from "../pages/public/RegistrationPage";
+import UsersPage from "../pages/admin/UsersPage";
+import AddUserPage from "../pages/admin/AddUserPage";
+import EditUserPage from "../pages/admin/EditUserPage";
 
 export interface IRoute {
   path: string;
@@ -47,7 +50,7 @@ export const adminRoutes: IRoute[] = [
   { path: UserRouteNames.ALL_CLAIMS, component: ClaimsPage },
   { path: UserRouteNames.ADD_CLAIM, component: AddClaimPage },
   { path: UserRouteNames.EDIT_CLAIM, component: EditClaimPage },
-  { path: AdminRouteNames.ALL_USERS, component: ClaimsPage },
-  { path: AdminRouteNames.ADD_USER, component: AddClaimPage },
-  { path: AdminRouteNames.EDIT_USER, component: EditClaimPage },
+  { path: AdminRouteNames.ALL_USERS, component: UsersPage },
+  { path: AdminRouteNames.ADD_USER, component: AddUserPage },
+  { path: AdminRouteNames.EDIT_USER, component: EditUserPage },
 ];
