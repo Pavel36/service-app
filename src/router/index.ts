@@ -1,9 +1,9 @@
 import React from "react";
-import AddClaimPage from "../pages/AddClaimPage";
-import ClaimsPage from "../pages/ClaimsPage";
-import EditClaimPage from "../pages/EditClaimPage";
-import LoginPage from "../pages/LoginPage";
-import RegistrationPage from "../pages/RegistrationPage";
+import AddClaimPage from "../pages/user/AddClaimPage";
+import ClaimsPage from "../pages/user/ClaimsPage";
+import EditClaimPage from "../pages/user/EditClaimPage";
+import LoginPage from "../pages/public/LoginPage";
+import RegistrationPage from "../pages/public/RegistrationPage";
 
 export interface IRoute {
   path: string;

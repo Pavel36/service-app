@@ -1,13 +1,13 @@
 import { Grid } from '@mui/material'
 import React from 'react'
-import HomeIcon from './icon-home.svg'
-import GlobeIcon from './icon-globe.svg'
-import ArchiveIcon from './icon-archive.svg'
-import PieIcon from './icon-pie-chart.svg'
-import DollarIcon from './icon-dollar-sign.svg'
-import DatabaseIcon from './icon-database.svg'
-import ArrowIcon from './icon-navigation.svg'
-import Logo from '../../pages/Group5.svg'
+import HomeIcon from '../../assets/icon-home.svg'
+import GlobeIcon from '../../assets/icon-globe.svg'
+import ArchiveIcon from '../../assets/icon-archive.svg'
+import PieIcon from '../../assets/icon-pie-chart.svg'
+import DollarIcon from '../../assets/icon-dollar-sign.svg'
+import DatabaseIcon from '../../assets/icon-database.svg'
+import ArrowIcon from '../../assets/icon-navigation.svg'
+import Logo from '../../assets/Group5.svg'
 
 const Sidebar = () => {
     return (

@@ -1,9 +1,9 @@
 import { Avatar, Grid, Input, InputAdornment } from "@mui/material";
 import React, { FC, useState } from "react";
-import LogOutIcon from "./icon-log-out.svg";
-import AvatarIcon from "./Ivan.png";
-import BellIcon from "./icon-bell.svg";
-import SearchIcon from "./icon-search.svg";
+import LogOutIcon from "../../assets/icon-log-out.svg";
+import AvatarIcon from "../../assets/Ivan.png";
+import BellIcon from "../../assets/icon-bell.svg";
+import SearchIcon from "../../assets/icon-search.svg";
 import { useDispatch } from "react-redux";
 import { AuthActionCreators } from "../../store/reducers/auth/action-creators";
 import { useTypedSelector } from "../../hooks/useTypedSelector";

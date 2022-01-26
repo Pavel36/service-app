@@ -1,22 +1,23 @@
-import React, { FC } from "react";
-import welcomeImg from "./welcome.png";
-import mainLogo from "./Group4.svg";
-import footerLogo from "./Group5.svg";
+import React from "react";
+import welcomeImg from "../../assets/welcome.png";
+import mainLogo from "../../assets/Group4.svg";
+import footerLogo from "../../assets/Group5.svg";
 import { Grid } from "@mui/material";
+import { Link } from "react-router-dom";
+import MyButton, { ButtonType } from "../../components/UI/MyButton";
 import { useForm, Resolver } from "react-hook-form";
 import { useDispatch } from "react-redux";
-import { AuthActionCreators } from "../store/reducers/auth/action-creators";
-import { useTypedSelector } from "../hooks/useTypedSelector";
-import MyInput from "../components/UI/MyInput";
-import MyButton, { ButtonType } from "../components/UI/MyButton";
+import { AuthActionCreators } from "../../store/reducers/auth/action-creators";
+import { useTypedSelector } from "../../hooks/useTypedSelector";
+import MyInput from "../../components/UI/MyInput";
+import { PublicRouteNames } from "../../router";
 
-interface FormValuesRegistration {
+interface FormValues {
   email: string;
   password: string;
-  fullName: string;
 }
 
-const resolver: Resolver<FormValuesRegistration> = async (values) => {
+const resolver: Resolver<FormValues> = async (values) => {
   return {
     values: values.email ? values : {},
     errors: !values.password
@@ -30,17 +31,17 @@ const resolver: Resolver<FormValuesRegistration> = async (values) => {
   };
 };
 
-const RegistrationPage = () => {
+const LoginPage = () => {
   const dispatch = useDispatch();
   const { error, isLoading } = useTypedSelector((state) => state.auth);
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<FormValuesRegistration>({ resolver });
-  const onSubmit = handleSubmit((data) => {
-    dispatch(AuthActionCreators.register(data));
-  });
+  } = useForm<FormValues>({ resolver });
+  const onSubmit = handleSubmit((data) =>
+    dispatch(AuthActionCreators.login(data))
+  );
 
   return (
     <Grid>
@@ -84,26 +85,31 @@ const RegistrationPage = () => {
               />
               {errors?.password && <p>{errors.password.message}</p>}
             </Grid>
-
             <Grid>
-              <MyInput
-                title="NAME"
-                type="text"
-                placeholder="Type your name"
-                register={{ ...register("fullName")}}
-              />
+              <label
+                style={{
+                  fontFamily: "Inter",
+                  fontWeight: 600,
+                  fontSize: "12px",
+                  color: "#ADADAD",
+                }}
+              >
+                <input type="checkbox" />
+                Keep me logged in
+              </label>
             </Grid>
-
             {error && <Grid color="#7db59a">{error}</Grid>}
-
             <Grid>
               <MyButton
                 style={{ width: "100%" }}
                 type={ButtonType.submit}
-                value="Registration"
+                value="Login"
                 disabled={isLoading}
               />
             </Grid>
+          </Grid>
+          <Grid sx={{ textAlign: "center" }}>
+            Not a member? <Link to={PublicRouteNames.REGISTRATION}>Request registration.</Link>
           </Grid>
         </Grid>
       </Grid>
@@ -116,4 +122,4 @@ const RegistrationPage = () => {
   );
 };
 
-export default RegistrationPage;
+export default LoginPage;

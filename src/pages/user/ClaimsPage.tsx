@@ -1,14 +1,14 @@
 import { Grid } from "@mui/material";
 import React, { useState, useEffect } from "react";
-import ClaimService from "../api/ClaimService";
-import ClaimList from "../components/ClaimList";
-import MyButton from "../components/UI/MyButton";
+import ClaimService from "../../api/ClaimService";
+import ClaimList from "../../components/ClaimList";
+import MyButton from "../../components/UI/MyButton";
 import { useNavigate } from "react-router";
-import { UserRouteNames } from "../router";
-import Header from "../components/Layout/Header";
-import { useTypedSelector } from "../hooks/useTypedSelector";
+import { UserRouteNames } from "../../router";
+import Header from "../../components/Layout/Header";
+import { useTypedSelector } from "../../hooks/useTypedSelector";
 import { PuffLoader } from "react-spinners";
-import Sidebar from "../components/Layout/Sidebar";
+import Sidebar from "../../components/Layout/Sidebar";
 
 const ClaimsPage = () => {
   const navigate = useNavigate();

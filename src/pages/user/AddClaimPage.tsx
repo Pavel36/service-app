@@ -1,12 +1,12 @@
 import { Grid } from "@mui/material";
 import axios from "axios";
-import React, { useEffect, useState } from "react";
-import { SubmitHandler, useForm } from "react-hook-form";
-import { useLocation, useNavigate } from "react-router-dom";
-import ClaimService from "../api/ClaimService";
-import MyButton, { ButtonType } from "../components/UI/MyButton";
-import MyInput from "../components/UI/MyInput";
-import MySelect from "../components/UI/MySelect";
+import React, { useState } from "react";
+import { Resolver, SubmitHandler, useForm } from "react-hook-form";
+import { useNavigate } from "react-router";
+import ClaimService from "../../api/ClaimService";
+import MyButton, { ButtonType } from "../../components/UI/MyButton";
+import MyInput from "../../components/UI/MyInput";
+import MySelect from "../../components/UI/MySelect";
 
 interface FormValues {
   title: string;
@@ -15,44 +15,26 @@ interface FormValues {
   status: string;
 }
 
-const EditClaimPage = (props: any) => {
+const AddClaimPage = () => {
   const navigate = useNavigate();
-  const location = useLocation();
   const [title, setTitle] = useState("");
   const [type, setType] = useState("");
   const [description, setDescription] = useState("");
-  const [status, setStatus] = useState("");
-  const [loading, setLoading] = useState(false);
-  const [editedClaim, setEditedClaim] = useState();
-
-  useEffect(() => {
-    setLoading(true);
-    ClaimService.getClaim(location.state).then((resp) => {
-      const claim = resp.data;
-      setEditedClaim(claim);
-      setTitle(claim.title);
-      setType(claim.type?.name);
-      setDescription(claim.description);
-      setStatus(claim.status?.name);
-    });
-    setLoading(false);
-  }, []);
 
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm<FormValues>();
-  const onSubmit: SubmitHandler<FormValues> = async (data) => {
-    await ClaimService.editClaim(location.state, data);
+  const onSubmit: SubmitHandler<FormValues> = async (data) =>{
+    data.status='new';
+    await ClaimService.addClaim(data);
     navigate(-1);
-  };
+  }
 
-  return loading ? (
-    <div>loading</div>
-  ) : (
+  return (
     <Grid>
-      <Grid style={{ fontSize: 36, fontWeight: 700 }}>Incoming claim</Grid>
+      <Grid style={{ fontSize: 36, fontWeight: 700 }}>Creating new claim</Grid>
       <Grid
         container
         onSubmit={handleSubmit(onSubmit)}
@@ -75,8 +57,8 @@ const EditClaimPage = (props: any) => {
             register={{ ...register("type", { required: true }) }}
             errors={errors.title}
             placeholder="Select type"
-            defaultValue={type}
             onSelect={setType}
+            defaultValue={type}
             options={[
               {
                 name: "Hardware",
@@ -98,37 +80,9 @@ const EditClaimPage = (props: any) => {
           />
         </Grid>
         <Grid style={{ marginTop: 30 }} xs={6}>
-          <MySelect
-            title="STATUS"
-            register={{ ...register("status", { required: true }) }}
-            errors={errors.title}
-            placeholder="Select status"
-            defaultValue={status}
-            onSelect={setStatus}
-            options={[
-              {
-                name: "Declined",
-                slug: "decl",
-              },
-              {
-                name: "New",
-                slug: "new",
-              },
-              {
-                name: "Done",
-                slug: "done",
-              },
-              {
-                name: "In progress",
-                slug: "in-progress",
-              },
-            ]}
-          />
-        </Grid>
-        <Grid style={{ marginTop: 30 }} xs={6}>
           <MyInput
-            value={description}
             title="DESCRIPTION"
+            value={description}
             register={{ ...register("description") }}
             placeholder="Type claim description"
             onChange={setDescription}
@@ -154,4 +108,4 @@ const EditClaimPage = (props: any) => {
   );
 };
 
-export default EditClaimPage;
+export default AddClaimPage;
