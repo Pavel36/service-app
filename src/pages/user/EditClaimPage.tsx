@@ -143,6 +143,7 @@ const EditClaimPage = (props: any) => {
                 color: "#858585",
                 border: "1px solid",
               }}
+              onClick={() => navigate(-1)}
             />
           </Grid>
           <Grid item>

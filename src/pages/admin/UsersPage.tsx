@@ -8,7 +8,7 @@ import { AdminRouteNames, UserRouteNames } from "../../router";
 import Header from "../../components/Layout/Header";
 import { PuffLoader } from "react-spinners";
 
-const ClaimsPage = () => {
+const UsersPage = () => {
   const navigate = useNavigate();
   const [users, setUsers] = useState([]);
   const [pageLoading, setPageLoading] = useState(false);
@@ -48,4 +48,4 @@ const ClaimsPage = () => {
   );
 };
 
-export default ClaimsPage;
+export default UsersPage;

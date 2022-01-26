@@ -15,7 +15,7 @@ interface FormValues {
   role: userRoles;
 }
 
-const EditClaimPage = (props: any) => {
+const EditUserPage = (props: any) => {
   const navigate = useNavigate();
   const location = useLocation();
   const [fullName, setFullName] = useState("");
@@ -117,6 +117,7 @@ const EditClaimPage = (props: any) => {
                 color: "#858585",
                 border: "1px solid",
               }}
+              onClick={() => navigate(-1)}
             />
           </Grid>
           <Grid item>
@@ -128,4 +129,4 @@ const EditClaimPage = (props: any) => {
   );
 };
 
-export default EditClaimPage;
+export default EditUserPage;

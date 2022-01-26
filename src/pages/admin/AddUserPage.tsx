@@ -99,6 +99,7 @@ const AddUserPage = () => {
                 color: "#858585",
                 border: "1px solid",
               }}
+              onClick={() => navigate(-1)}
             />
           </Grid>
           <Grid item>

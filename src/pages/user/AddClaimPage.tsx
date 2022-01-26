@@ -26,11 +26,11 @@ const AddClaimPage = () => {
     handleSubmit,
     formState: { errors },
   } = useForm<FormValues>();
-  const onSubmit: SubmitHandler<FormValues> = async (data) =>{
-    data.status='new';
+  const onSubmit: SubmitHandler<FormValues> = async (data) => {
+    data.status = "new";
     await ClaimService.addClaim(data);
     navigate(-1);
-  }
+  };
 
   return (
     <Grid>
@@ -97,6 +97,7 @@ const AddClaimPage = () => {
                 color: "#858585",
                 border: "1px solid",
               }}
+              onClick={() => navigate(-1)}
             />
           </Grid>
           <Grid item>
