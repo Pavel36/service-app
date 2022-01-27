@@ -32,7 +32,6 @@ const EditUserPage = (props: any) => {
       setEditedUser(user);
       setFullName(user.fullName);
       setEmail(user.email);
-      setPassword(user.password);
       setRole(user.role);
     });
     setLoading(false);
@@ -52,7 +51,7 @@ const EditUserPage = (props: any) => {
     <div>loading</div>
   ) : (
     <Grid>
-      <Grid style={{ fontSize: 36, fontWeight: 700 }}>Incoming claim</Grid>
+      <Grid style={{ fontSize: 36, fontWeight: 700 }}>Edit user</Grid>
       <Grid
         container
         onSubmit={handleSubmit(onSubmit)}
@@ -80,15 +79,6 @@ const EditUserPage = (props: any) => {
           />
         </Grid>
         <Grid style={{ marginTop: 30 }} xs={6}>
-          <MyInput
-            title="PASSWORD"
-            value={password}
-            register={{ ...register("password") }}
-            placeholder="Type password"
-            onChange={setPassword}
-          />
-        </Grid>
-        <Grid style={{ marginTop: 30 }} xs={6}>
           <MySelect
             title="ROLE"
             register={{ ...register("role", { required: true }) }}
@@ -106,6 +96,16 @@ const EditUserPage = (props: any) => {
                 slug: userRoles.worker,
               },
             ]}
+          />
+        </Grid>
+        <Grid style={{ marginTop: 30 }} xs={6}>
+          <MyInput
+            type="password"
+            title="NEW PASSWORD"
+            value={password}
+            register={{ ...register("password") }}
+            placeholder="Type password"
+            onChange={setPassword}
           />
         </Grid>
         <Grid style={{ marginTop: 30 }} container spacing={2}>

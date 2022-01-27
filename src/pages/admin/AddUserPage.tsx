@@ -62,15 +62,6 @@ const AddUserPage = () => {
           />
         </Grid>
         <Grid style={{ marginTop: 30 }} xs={6}>
-          <MyInput
-            title="PASSWORD"
-            value={password}
-            register={{ ...register("password") }}
-            placeholder="Type password"
-            onChange={setPassword}
-          />
-        </Grid>
-        <Grid style={{ marginTop: 30 }} xs={6}>
           <MySelect
             title="ROLE"
             register={{ ...register("role", { required: true }) }}
@@ -88,6 +79,16 @@ const AddUserPage = () => {
                 slug: userRoles.worker,
               },
             ]}
+          />
+        </Grid>
+        <Grid style={{ marginTop: 30 }} xs={6}>
+          <MyInput
+            type="password"
+            title="PASSWORD"
+            value={password}
+            register={{ ...register("password") }}
+            placeholder="Type password"
+            onChange={setPassword}
           />
         </Grid>
         <Grid style={{ marginTop: 30 }} container spacing={2}>

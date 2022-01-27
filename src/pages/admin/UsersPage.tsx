@@ -7,6 +7,7 @@ import { useNavigate } from "react-router";
 import { AdminRouteNames, UserRouteNames } from "../../router";
 import Header from "../../components/Layout/Header";
 import { PuffLoader } from "react-spinners";
+import UserList from "../../components/UserList";
 
 const UsersPage = () => {
   const navigate = useNavigate();
@@ -31,7 +32,7 @@ const UsersPage = () => {
       <Grid marginTop="20px" style={{ justifyContent: "end" }}>
         <MyButton
           onClick={() => navigate(AdminRouteNames.ADD_USER)}
-          value="+ Create claim"
+          value="+ Create user"
         />
       </Grid>
       <Grid marginTop="20px">
@@ -41,7 +42,7 @@ const UsersPage = () => {
           </Grid>
         ) : (
             //TODO Change ClaimList component
-          <ClaimList data={users} />
+          <UserList data={users} />
         )}
       </Grid>
     </Grid>
