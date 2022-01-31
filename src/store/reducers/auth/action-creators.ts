@@ -28,7 +28,17 @@ export const AuthActionCreators = {
   register: (data: any) => async (dispatch: AppDispatch) => {
     dispatch(AuthActionCreators.setIsLoading(true));
     AuthService.register(data).then((resp) => {
-      if (!resp.data.message) {
+      console.log(localStorage.getItem("token"));
+    })
+    .catch((e)=>{
+      dispatch(AuthActionCreators.setError("Registration error"));
+    });
+    dispatch(AuthActionCreators.setIsLoading(false));
+  },
+  login: (data: any) => async (dispatch: AppDispatch) => {
+    dispatch(AuthActionCreators.setIsLoading(true));
+    AuthService.login(data)
+      .then((resp) => {
         let user: IUser = {
           email: resp.data.email,
           token: resp.data.token,
@@ -39,38 +49,14 @@ export const AuthActionCreators = {
         localStorage.setItem("auth", "true");
         localStorage.setItem("token", resp.data.token);
         console.log(localStorage.getItem("token"));
-        dispatch(AuthActionCreators.setIsLoading(false));
-      } else {
-        dispatch(AuthActionCreators.setError(resp.data.message));
-      }
-    });
-  },
-  login: (data: any) => async (dispatch: AppDispatch) => {
-    dispatch(AuthActionCreators.setIsLoading(true));
-    AuthService.login(data)
-      .then((resp) => {
-        if (!resp.data.message) {
-          let user: IUser = {
-            email: resp.data.email,
-            token: resp.data.token,
-            role: resp.data.role.name,
-            role_slug: resp.data.role.slug,
-            fullName: resp.data.fullName,
-          };
-          localStorage.setItem("auth", "true");
-          localStorage.setItem("token", resp.data.token);
-          console.log(localStorage.getItem("token"));
 
-          dispatch(AuthActionCreators.setUser(user));
-          dispatch(AuthActionCreators.setIsAuth(true));
-          dispatch(AuthActionCreators.setIsLoading(false));
-        } else {
-          dispatch(AuthActionCreators.setError(resp.data.message));
-        }
+        dispatch(AuthActionCreators.setUser(user));
+        dispatch(AuthActionCreators.setIsAuth(true));
       })
       .catch((e) => {
-        dispatch(AuthActionCreators.setError('Wrong e-mail or password'));
+        dispatch(AuthActionCreators.setError("Wrong e-mail or password"));
       });
+    dispatch(AuthActionCreators.setIsLoading(false));
   },
   logout: () => async (dispatch: AppDispatch) => {
     localStorage.removeItem("auth");

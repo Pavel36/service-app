@@ -5,7 +5,7 @@ import ClaimList from "../../components/ClaimList";
 import MyButton from "../../components/UI/MyButton";
 import { useNavigate } from "react-router";
 import { AdminRouteNames, UserRouteNames } from "../../router";
-import Header from "../../components/Layout/Header";
+import Header, { HeaderSearchType } from "../../components/Layout/Header";
 import { PuffLoader } from "react-spinners";
 import UserList from "../../components/UserList";
 
@@ -24,11 +24,11 @@ const UsersPage = () => {
     setUsersLoading(false);
   }, []);
 
-  return pageLoading ? (
+  return usersLoading ? (
     <PuffLoader />
   ) : (
     <Grid container direction="column">
-      <Header setLoading={setUsersLoading} setFilterdClaims={setUsers} />
+      <Header setLoading={setUsersLoading} setFilterdItems={setUsers} type={HeaderSearchType.user}/>
       <Grid marginTop="20px" style={{ justifyContent: "end" }}>
         <MyButton
           onClick={() => navigate(AdminRouteNames.ADD_USER)}

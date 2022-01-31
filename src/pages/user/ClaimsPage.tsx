@@ -5,7 +5,7 @@ import ClaimList from "../../components/ClaimList";
 import MyButton from "../../components/UI/MyButton";
 import { useNavigate } from "react-router";
 import { UserRouteNames } from "../../router";
-import Header from "../../components/Layout/Header";
+import Header, { HeaderSearchType } from "../../components/Layout/Header";
 import { useTypedSelector } from "../../hooks/useTypedSelector";
 import { PuffLoader } from "react-spinners";
 import Sidebar from "../../components/Layout/Sidebar";
@@ -26,10 +26,16 @@ const ClaimsPage = () => {
   }, []);
 
   return pageLoading ? (
-    <PuffLoader />
+    <Grid>
+      <PuffLoader />
+    </Grid>
   ) : (
     <Grid container direction="column">
-      <Header setLoading={setClaimsLoading} setFilterdClaims={setClaims} />
+      <Header
+        setLoading={setClaimsLoading}
+        setFilterdItems={setClaims}
+        type={HeaderSearchType.claim}
+      />
       <Grid marginTop="20px" style={{ justifyContent: "end" }}>
         <MyButton
           onClick={() => navigate(UserRouteNames.ADD_CLAIM)}

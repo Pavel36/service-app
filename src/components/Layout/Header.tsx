@@ -9,22 +9,46 @@ import { AuthActionCreators } from "../../store/reducers/auth/action-creators";
 import { useTypedSelector } from "../../hooks/useTypedSelector";
 import MyInput from "../UI/MyInput";
 import ClaimService from "../../api/ClaimService";
+import UserService from "../../api/UserService";
 
-interface IHeaderProps {
-  setLoading: (loading: boolean) => void;
-  setFilterdClaims: (claims: any) => void;
+export enum HeaderSearchType {
+  claim,
+  user,
 }
 
-const Header: FC<IHeaderProps> = ({ setLoading, setFilterdClaims }) => {
+interface IHeaderProps {
+  setLoading?: (loading: boolean) => void;
+  setFilterdItems?: (claims: any) => void;
+  type?: HeaderSearchType;
+  showSearchString?: boolean;
+}
+
+const Header: FC<IHeaderProps> = ({
+  setLoading,
+  setFilterdItems,
+  type,
+  showSearchString = true,
+}) => {
   const dispatch = useDispatch();
   const [searchString, setSearchString] = useState("");
 
   const handleSearchClick = () => {
-    setLoading(true);
-    ClaimService.searchClaim(searchString).then((resp) => {
-      setFilterdClaims(resp.data.claims);
+    if (showSearchString && setLoading && setFilterdItems) {
+      setLoading(true);
+      switch (type) {
+        case HeaderSearchType.claim:
+          ClaimService.searchClaim(searchString).then((resp) => {
+            setFilterdItems(resp.data.claims);
+          });
+          break;
+        case HeaderSearchType.user:
+          UserService.searchUser(searchString).then((resp) => {
+            setFilterdItems(resp.data.claims);
+          });
+          break;
+      }
       setLoading(false);
-    });
+    }
   };
 
   const handleLogOutClick = () => {
@@ -32,22 +56,39 @@ const Header: FC<IHeaderProps> = ({ setLoading, setFilterdClaims }) => {
   };
 
   return (
-    <Grid container xs={12} borderBottom="2px solid #f0f0f0" paddingBottom="10px" paddingTop="10px" justifyContent="flex-end">
-      <Grid item xs={3}>
-        <MyInput
-          placeholder="Search"
-          style={{ width: "80%" }}
-          onChange={setSearchString}
-        />
-        <button
-          style={{ background: "transparent", border: 0, cursor: "pointer", position: "absolute", left:'68%' }}
-          onClick={() => {
-            handleSearchClick();
-          }}
-        >
-          <img src={SearchIcon} alt="" />
-        </button>
-      </Grid>
+    <Grid
+      container
+      xs={12}
+      borderBottom="2px solid #f0f0f0"
+      paddingBottom="10px"
+      paddingTop="10px"
+      justifyContent="flex-end"
+    >
+      {showSearchString ? (
+        <Grid item xs={3}>
+          <MyInput
+            placeholder="Search"
+            style={{ width: "80%" }}
+            onChange={setSearchString}
+          />
+          <button
+            style={{
+              background: "transparent",
+              border: 0,
+              cursor: "pointer",
+              position: "absolute",
+              left: "68%",
+            }}
+            onClick={() => {
+              handleSearchClick();
+            }}
+          >
+            <img src={SearchIcon} alt="" />
+          </button>
+        </Grid>
+      ) : (
+        <Grid item xs={3}></Grid>
+      )}
 
       <Grid xs={1}>
         <button
@@ -66,7 +107,7 @@ const Header: FC<IHeaderProps> = ({ setLoading, setFilterdClaims }) => {
           <Avatar alt="Ivan Ivanov" src={AvatarIcon} />
         </button>
       </Grid>
-      
+
       <Grid xs={1}>
         <button
           style={{ background: "transparent", border: 0, cursor: "pointer" }}

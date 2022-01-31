@@ -4,6 +4,7 @@ import React, { useEffect, useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { useLocation, useNavigate } from "react-router-dom";
 import ClaimService from "../../api/ClaimService";
+import Header from "../../components/Layout/Header";
 import MyButton, { ButtonType } from "../../components/UI/MyButton";
 import MyInput from "../../components/UI/MyInput";
 import MySelect from "../../components/UI/MySelect";
@@ -52,6 +53,7 @@ const EditClaimPage = (props: any) => {
     <div>loading</div>
   ) : (
     <Grid>
+      <Header showSearchString={false} />
       <Grid style={{ fontSize: 36, fontWeight: 700 }}>Incoming claim</Grid>
       <Grid
         container

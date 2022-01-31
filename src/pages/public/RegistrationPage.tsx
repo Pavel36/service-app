@@ -9,6 +9,8 @@ import { AuthActionCreators } from "../../store/reducers/auth/action-creators";
 import { useTypedSelector } from "../../hooks/useTypedSelector";
 import MyInput from "../../components/UI/MyInput";
 import MyButton, { ButtonType } from "../../components/UI/MyButton";
+import { useNavigate } from "react-router";
+import { PublicRouteNames } from "../../router";
 
 interface FormValuesRegistration {
   email: string;
@@ -31,6 +33,7 @@ const resolver: Resolver<FormValuesRegistration> = async (values) => {
 };
 
 const RegistrationPage = () => {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const { error, isLoading } = useTypedSelector((state) => state.auth);
   const {

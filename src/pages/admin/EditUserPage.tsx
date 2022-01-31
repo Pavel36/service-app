@@ -4,6 +4,7 @@ import React, { useEffect, useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { useLocation, useNavigate } from "react-router-dom";
 import UserService, { userRoles } from "../../api/UserService";
+import Header from "../../components/Layout/Header";
 import MyButton, { ButtonType } from "../../components/UI/MyButton";
 import MyInput from "../../components/UI/MyInput";
 import MySelect from "../../components/UI/MySelect";
@@ -51,6 +52,7 @@ const EditUserPage = (props: any) => {
     <div>loading</div>
   ) : (
     <Grid>
+      <Header showSearchString={false} />
       <Grid style={{ fontSize: 36, fontWeight: 700 }}>Edit user</Grid>
       <Grid
         container

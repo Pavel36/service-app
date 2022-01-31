@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import { Resolver, SubmitHandler, useForm } from "react-hook-form";
 import { useNavigate } from "react-router";
 import ClaimService from "../../api/ClaimService";
+import Header from "../../components/Layout/Header";
 import MyButton, { ButtonType } from "../../components/UI/MyButton";
 import MyInput from "../../components/UI/MyInput";
 import MySelect from "../../components/UI/MySelect";
@@ -34,6 +35,7 @@ const AddClaimPage = () => {
 
   return (
     <Grid>
+      <Header showSearchString={false} />
       <Grid style={{ fontSize: 36, fontWeight: 700 }}>Creating new claim</Grid>
       <Grid
         container
