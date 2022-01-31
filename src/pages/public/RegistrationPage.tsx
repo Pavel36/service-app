@@ -69,7 +69,7 @@ const RegistrationPage = () => {
             component="form"
             direction="column"
           >
-            <Grid>
+            <Grid item paddingTop={10}>
               <MyInput
                 title="E-MAIL"
                 type="email"
@@ -78,7 +78,7 @@ const RegistrationPage = () => {
               />
             </Grid>
 
-            <Grid>
+            <Grid item paddingTop={3}>
               <MyInput
                 title="PASSWORD"
                 type="password"
@@ -88,7 +88,7 @@ const RegistrationPage = () => {
               {errors?.password && <p>{errors.password.message}</p>}
             </Grid>
 
-            <Grid>
+            <Grid item paddingTop={3}>
               <MyInput
                 title="NAME"
                 type="text"
@@ -97,9 +97,9 @@ const RegistrationPage = () => {
               />
             </Grid>
 
-            {error && <Grid color="#7db59a">{error}</Grid>}
+            {error && <Grid item paddingTop={3} color="#7db59a">{error}</Grid>}
 
-            <Grid>
+            <Grid item paddingTop={3}>
               <MyButton
                 style={{ width: "100%" }}
                 type={ButtonType.submit}

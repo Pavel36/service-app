@@ -49,25 +49,22 @@ const LoginPage = () => {
         <Grid
           textAlign="center"
           sx={{ background: "#D3EDE1F7", padding: 8 }}
-          md={6}
+          xs={7}
         >
-          <img src={welcomeImg} style={{ width: "90%" }} alt="" />
+          <img src={welcomeImg} alt="" />
         </Grid>
-        <Grid
-          container
-          direction="column"
-          justifyContent="center"
-          sx={{ paddingX: 20 }}
-          md={6}
-        >
-          <img src={mainLogo} alt="" />
+        <Grid container direction="column" justifyContent="center" alignItems="center" xs={3} marginLeft={15}>
+          <Grid item>
+            <img src={mainLogo} alt="" />
+          </Grid>
           <Grid
             container
             onSubmit={onSubmit}
             component="form"
             direction="column"
+            item
           >
-            <Grid>
+            <Grid item paddingTop={10}>
               <MyInput
                 title="E-MAIL"
                 type="email"
@@ -76,7 +73,7 @@ const LoginPage = () => {
               />
             </Grid>
 
-            <Grid>
+            <Grid item paddingTop={3}>
               <MyInput
                 title="PASSWORD"
                 type="password"
@@ -85,7 +82,7 @@ const LoginPage = () => {
               />
               {errors?.password && <p>{errors.password.message}</p>}
             </Grid>
-            <Grid>
+            <Grid item paddingTop={3}>
               <label
                 style={{
                   fontFamily: "Inter",
@@ -98,8 +95,12 @@ const LoginPage = () => {
                 Keep me logged in
               </label>
             </Grid>
-            {error && <Grid color="#7db59a">{error}</Grid>}
-            <Grid>
+            {error && (
+              <Grid item color="#7db59a" paddingTop={3}>
+                {error}
+              </Grid>
+            )}
+            <Grid item paddingTop={3}>
               <MyButton
                 style={{ width: "100%" }}
                 type={ButtonType.submit}
@@ -108,8 +109,11 @@ const LoginPage = () => {
               />
             </Grid>
           </Grid>
-          <Grid sx={{ textAlign: "center" }}>
-            Not a member? <Link to={PublicRouteNames.REGISTRATION}>Request registration.</Link>
+          <Grid item sx={{ textAlign: "center" }} paddingTop={3}>
+            Not a member?{" "}
+            <Link to={PublicRouteNames.REGISTRATION}>
+              Request registration.
+            </Link>
           </Grid>
         </Grid>
       </Grid>

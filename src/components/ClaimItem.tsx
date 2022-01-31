@@ -1,5 +1,5 @@
 import { Chip, Grid, TableCell, TableRow } from "@mui/material";
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 import React, { FC } from "react";
 import { UserRouteNames } from "../router";
 
@@ -18,7 +18,7 @@ enum claimStatusTypes {
 }
 
 interface IClaimItemProps {
-  id:string;
+  id: string;
   claimTitle?: string;
   claimCreated?: string;
   claimType?: any;
@@ -115,17 +115,33 @@ const ClaimItem: FC<IClaimItemProps> = ({
   claimType,
   claimStatus,
 }) => {
-  
   return (
     <TableRow>
       <TableCell>{claimTitle}</TableCell>
       <TableCell>{claimCreated}</TableCell>
 
-      {claimType ? claimTypeSwitch(claimType) : <TableCell></TableCell>}
-      {claimStatus ? claimStatusSwitch(claimStatus) : <TableCell></TableCell>}
+      {claimType ? (
+        claimTypeSwitch(claimType)
+      ) : (
+        <TableCell>
+          <Grid container direction="row">
+            <Grid sx={{ color: "#f0f0f0", marginRight: "2px" }}>●</Grid>
+            <Grid>None</Grid>
+          </Grid>
+        </TableCell>
+      )}
+      {claimStatus ? (
+        claimStatusSwitch(claimStatus)
+      ) : (
+        <TableCell>
+          <Chip label="NONE" sx={{ backgroundColor: "#f0f0f0" }} />
+        </TableCell>
+      )}
 
       <TableCell>
-        <Link to={`/claims/${id}`} state={id}>Browse</Link>
+        <Link to={`/claims/${id}`} state={id}>
+          Browse
+        </Link>
       </TableCell>
     </TableRow>
   );
