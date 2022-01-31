@@ -1,9 +1,15 @@
-
 export const dateCustomFormatter = (dateISOString: string) => {
-    const date = new Date(dateISOString);
-    const month = date.getMonth()+1;
-    const day = date.getDay();
-    const year = date.getFullYear();
+  let date = new Date(dateISOString);
+  let month;
+  let day;
+  date.getDay() + 1 < 10
+    ? (day = `0${date.getDay() + 1}`)
+    : (day = date.getDay() + 1);
+  date.getMonth() + 1 < 10
+    ? (month = `0${date.getMonth() + 1}`)
+    : (month = date.getMonth() + 1);
 
-    return `${day}/${month}/${year}`;
-}
+  let year = date.getFullYear();
+
+  return `${day}/${month}/${year}`;
+};
