@@ -2,6 +2,7 @@ import { Chip, Grid, TableCell, TableRow } from "@mui/material";
 import { Link } from "react-router-dom";
 import React, { FC } from "react";
 import { UserRouteNames } from "../router";
+import { dateCustomFormatter } from "../utils/dateFormatter";
 
 enum claimTypes {
   Hardware,
@@ -115,10 +116,15 @@ const ClaimItem: FC<IClaimItemProps> = ({
   claimType,
   claimStatus,
 }) => {
+  let formatDate;
+  if(claimCreated){
+    formatDate = dateCustomFormatter(claimCreated)
+  }
+  
   return (
     <TableRow>
       <TableCell width="30%">{claimTitle}</TableCell>
-      <TableCell width="17.5%">{claimCreated}</TableCell>
+      <TableCell width="17.5%">{formatDate}</TableCell>
 
       {claimType ? (
         claimTypeSwitch(claimType)
