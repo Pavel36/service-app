@@ -36,7 +36,7 @@ const AddClaimPage = () => {
   return (
     <Grid>
       <Header showSearchString={false} />
-      <Grid style={{ fontSize: 36, fontWeight: 700 }}>Creating new claim</Grid>
+      <Grid marginTop={6} style={{ fontSize: 36, fontWeight: 700 }}>Creating new claim</Grid>
       <Grid
         container
         onSubmit={handleSubmit(onSubmit)}

@@ -71,7 +71,7 @@ const claimStatusSwitch = (claimStatus: any) => {
   switch (claimStatus.name) {
     case "Declined":
       return (
-        <TableCell>
+        <TableCell width='17.5%'>
           <Chip
             label="DECLINED"
             sx={{ color: "#FFFFFF", backgroundColor: "#E84393" }}
@@ -80,7 +80,7 @@ const claimStatusSwitch = (claimStatus: any) => {
       );
     case "New":
       return (
-        <TableCell>
+        <TableCell width='17.5%'>
           <Chip
             label="NEW"
             sx={{ color: "#FFFFFF", backgroundColor: "#6C5CE7" }}
@@ -89,7 +89,7 @@ const claimStatusSwitch = (claimStatus: any) => {
       );
     case "In progress":
       return (
-        <TableCell>
+        <TableCell width='17.5%'>
           <Chip
             label="IN PROGRESS"
             sx={{ color: "#FFFFFF", backgroundColor: "#FDCB6E" }}
@@ -98,7 +98,7 @@ const claimStatusSwitch = (claimStatus: any) => {
       );
     case "Done":
       return (
-        <TableCell>
+        <TableCell width='17.5%'>
           <Chip
             label="DONE"
             sx={{ color: "#FFFFFF", backgroundColor: "#00B894" }}
@@ -117,13 +117,13 @@ const ClaimItem: FC<IClaimItemProps> = ({
 }) => {
   return (
     <TableRow>
-      <TableCell>{claimTitle}</TableCell>
-      <TableCell>{claimCreated}</TableCell>
+      <TableCell width="30%">{claimTitle}</TableCell>
+      <TableCell width="17.5%">{claimCreated}</TableCell>
 
       {claimType ? (
         claimTypeSwitch(claimType)
       ) : (
-        <TableCell>
+        <TableCell width="17.5%">
           <Grid container direction="row">
             <Grid sx={{ color: "#f0f0f0", marginRight: "2px" }}>●</Grid>
             <Grid>None</Grid>
@@ -133,12 +133,12 @@ const ClaimItem: FC<IClaimItemProps> = ({
       {claimStatus ? (
         claimStatusSwitch(claimStatus)
       ) : (
-        <TableCell>
+        <TableCell width="17.5%">
           <Chip label="NONE" sx={{ backgroundColor: "#f0f0f0" }} />
         </TableCell>
       )}
 
-      <TableCell>
+      <TableCell width="17.5%">
         <Link to={`/claims/${id}`} state={id}>
           Browse
         </Link>

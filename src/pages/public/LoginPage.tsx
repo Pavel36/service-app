@@ -85,7 +85,6 @@ const LoginPage = () => {
             <Grid item paddingTop={3}>
               <label
                 style={{
-                  fontFamily: "Inter",
                   fontWeight: 600,
                   fontSize: "12px",
                   color: "#ADADAD",

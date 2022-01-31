@@ -54,7 +54,7 @@ const EditClaimPage = (props: any) => {
   ) : (
     <Grid>
       <Header showSearchString={false} />
-      <Grid style={{ fontSize: 36, fontWeight: 700 }}>Incoming claim</Grid>
+      <Grid style={{ fontSize: 36, fontWeight: 700 }} marginTop={6}>Incoming claim</Grid>
       <Grid
         container
         onSubmit={handleSubmit(onSubmit)}

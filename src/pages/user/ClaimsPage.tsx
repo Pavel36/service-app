@@ -25,10 +25,8 @@ const ClaimsPage = () => {
     setClaimsLoading(false);
   }, []);
 
-  return pageLoading ? (
-    <Grid>
-      <PuffLoader />
-    </Grid>
+  return claimsLoading ? (
+    <PuffLoader />
   ) : (
     <Grid container direction="column">
       <Header
@@ -36,12 +34,23 @@ const ClaimsPage = () => {
         setFilterdItems={setClaims}
         type={HeaderSearchType.claim}
       />
-      <Grid marginTop="20px" style={{ justifyContent: "end" }}>
-        <MyButton
-          onClick={() => navigate(UserRouteNames.ADD_CLAIM)}
-          value="+ Create claim"
-        />
+      <Grid
+        container
+        direction="row"
+        marginTop={6}
+        justifyContent="space-between"
+      >
+        <Grid item style={{ fontSize: 36, fontWeight: 700 }}>
+          Your Claims
+        </Grid>
+        <Grid item>
+          <MyButton
+            onClick={() => navigate(UserRouteNames.ADD_CLAIM)}
+            value="+ Create claim"
+          />
+        </Grid>
       </Grid>
+
       <Grid marginTop="20px">
         {claimsLoading ? (
           <Grid>
