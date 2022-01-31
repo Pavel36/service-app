@@ -33,7 +33,6 @@ const MyInput: FC<IMyInputProps> = ({
       <label
         style={{
           display: "block",
-          fontFamily: "Inter",
           fontWeight: 600,
           fontSize: "12px",
           color: "#ADADAD",

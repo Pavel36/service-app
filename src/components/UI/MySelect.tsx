@@ -12,7 +12,6 @@ const MySelect = (props: any) => {
       <label
         style={{
           display: "block",
-          fontFamily: "Inter",
           fontWeight: 600,
           fontSize: "12px",
           color: "#ADADAD",
