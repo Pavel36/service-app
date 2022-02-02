@@ -22,6 +22,7 @@ const AddUserPage = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [role, setRole] = useState<userRoles>(userRoles.worker);
+  const [error, setError] = useState("");
 
   const {
     register,
@@ -29,14 +30,21 @@ const AddUserPage = () => {
     formState: { errors },
   } = useForm<FormValues>();
   const onSubmit: SubmitHandler<FormValues> = async (data) => {
-    await UserService.addUser(data);
-    navigate(-1);
+    await UserService.addUser(data)
+      .then(() => {
+        navigate(-1);
+      })
+      .catch((e) => {
+        setError("User was not added");
+      });
   };
 
   return (
     <Grid>
       <Header showSearchString={false} />
-      <Grid style={{ fontSize: 36, fontWeight: 700 }}>Creating new user</Grid>
+      <Grid style={{ fontSize: 36, fontWeight: 700 }} marginTop={6}>
+        Creating new user
+      </Grid>
       <Grid
         container
         onSubmit={handleSubmit(onSubmit)}
@@ -93,6 +101,11 @@ const AddUserPage = () => {
             onChange={setPassword}
           />
         </Grid>
+        {error && (
+          <Grid style={{ marginTop: 30 }} color="#7db59a">
+            {error}
+          </Grid>
+        )}
         <Grid style={{ marginTop: 30 }} container spacing={2}>
           <Grid item>
             <MyButton

@@ -134,45 +134,55 @@ const UserList = (props: any) => {
             </TableRow>
           </TableHead>
           <TableBody>
-            {(rowsPerPage > 0
-              ? props.data.slice(
-                  page * rowsPerPage,
-                  page * rowsPerPage + rowsPerPage
-                )
-              : props.data
-            ).map((user: any) => (
-              <UserItem
-                id={user._id}
-                key={user._id}
-                userFullname={user.fullName}
-                userRole={user.role}
-                userEmail={user.email}
-                userCreated={user.createdAt}
-                userUpdeted={user.updatedAt}
-              />
-            ))}
+            {props.data.length > 0 ? (
+              (rowsPerPage > 0
+                ? props.data.slice(
+                    page * rowsPerPage,
+                    page * rowsPerPage + rowsPerPage
+                  )
+                : props.data
+              ).map((user: any) => (
+                <UserItem
+                  id={user._id}
+                  key={user._id}
+                  userFullname={user.fullName}
+                  userRole={user.role}
+                  userEmail={user.email}
+                  userCreated={user.createdAt}
+                  userUpdeted={user.updatedAt}
+                />
+              ))
+            ) : (
+              <TableRow>
+                <TableCell colSpan={6} align="center">
+                  Users not found
+                </TableCell>
+              </TableRow>
+            )}
           </TableBody>
         </Table>
       </TableContainer>
-      <Grid container justifyContent="end">
-        <TablePagination
-          rowsPerPageOptions={[5, 10, 25, { label: "All", value: -1 }]}
-          colSpan={3}
-          count={props.data.length}
-          rowsPerPage={rowsPerPage}
-          page={page}
-          SelectProps={{
-            inputProps: {
-              "aria-label": "rows per page",
-            },
-            native: true,
-          }}
-          onPageChange={handleChangePage}
-          onRowsPerPageChange={handleChangeRowsPerPage}
-          ActionsComponent={TablePaginationActions}
-          sx={{border:'none'}}
-        />
-      </Grid>
+      {props.data.length > 0 && (
+        <Grid container justifyContent="end">
+          <TablePagination
+            rowsPerPageOptions={[5, 10, 25, { label: "All", value: -1 }]}
+            colSpan={3}
+            count={props.data.length}
+            rowsPerPage={rowsPerPage}
+            page={page}
+            SelectProps={{
+              inputProps: {
+                "aria-label": "rows per page",
+              },
+              native: true,
+            }}
+            onPageChange={handleChangePage}
+            onRowsPerPageChange={handleChangeRowsPerPage}
+            ActionsComponent={TablePaginationActions}
+            sx={{ border: "none" }}
+          />
+        </Grid>
+      )}
     </Grid>
   );
 };

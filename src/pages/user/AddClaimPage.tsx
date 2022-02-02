@@ -21,6 +21,7 @@ const AddClaimPage = () => {
   const [title, setTitle] = useState("");
   const [type, setType] = useState("");
   const [description, setDescription] = useState("");
+  const [error, setError] = useState("");
 
   const {
     register,
@@ -29,14 +30,21 @@ const AddClaimPage = () => {
   } = useForm<FormValues>();
   const onSubmit: SubmitHandler<FormValues> = async (data) => {
     data.status = "new";
-    await ClaimService.addClaim(data);
-    navigate(-1);
+    await ClaimService.addClaim(data)
+      .then(() => {
+        navigate(-1);
+      })
+      .catch((e) => {
+        setError("Claim was not added");
+      });
   };
 
   return (
     <Grid>
       <Header showSearchString={false} />
-      <Grid marginTop={6} style={{ fontSize: 36, fontWeight: 700 }}>Creating new claim</Grid>
+      <Grid marginTop={6} style={{ fontSize: 36, fontWeight: 700 }}>
+        Creating new claim
+      </Grid>
       <Grid
         container
         onSubmit={handleSubmit(onSubmit)}
@@ -90,6 +98,11 @@ const AddClaimPage = () => {
             onChange={setDescription}
           />
         </Grid>
+        {error && (
+          <Grid style={{ marginTop: 30 }} color="#7db59a">
+            {error}
+          </Grid>
+        )}
         <Grid style={{ marginTop: 30 }} container spacing={2}>
           <Grid item>
             <MyButton

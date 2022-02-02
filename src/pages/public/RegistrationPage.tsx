@@ -42,7 +42,9 @@ const RegistrationPage = () => {
     formState: { errors },
   } = useForm<FormValuesRegistration>({ resolver });
   const onSubmit = handleSubmit((data) => {
+    dispatch(AuthActionCreators.setIsLoading(true));
     dispatch(AuthActionCreators.register(data));
+    !isLoading && navigate(-1);
   });
 
   return (

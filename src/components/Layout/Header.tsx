@@ -1,4 +1,4 @@
-import { Avatar, Grid, Input, InputAdornment } from "@mui/material";
+import { Avatar, Grid } from "@mui/material";
 import React, { FC, useState } from "react";
 import LogOutIcon from "../../assets/icon-log-out.svg";
 import AvatarIcon from "../../assets/Ivan.png";
@@ -6,7 +6,6 @@ import BellIcon from "../../assets/icon-bell.svg";
 import SearchIcon from "../../assets/icon-search.svg";
 import { useDispatch } from "react-redux";
 import { AuthActionCreators } from "../../store/reducers/auth/action-creators";
-import { useTypedSelector } from "../../hooks/useTypedSelector";
 import MyInput from "../UI/MyInput";
 import ClaimService from "../../api/ClaimService";
 import UserService from "../../api/UserService";
@@ -34,20 +33,22 @@ const Header: FC<IHeaderProps> = ({
 
   const handleSearchClick = () => {
     if (showSearchString && setLoading && setFilterdItems) {
-      setLoading(true);
       switch (type) {
         case HeaderSearchType.claim:
+          setLoading(true);
           ClaimService.searchClaim(searchString).then((resp) => {
             setFilterdItems(resp.data.claims);
+            setLoading(false);
           });
           break;
         case HeaderSearchType.user:
+          setLoading(true);
           UserService.searchUser(searchString).then((resp) => {
-            setFilterdItems(resp.data.claims);
+            setFilterdItems(resp.data.users);
+            setLoading(false);
           });
           break;
       }
-      setLoading(false);
     }
   };
 
@@ -66,18 +67,14 @@ const Header: FC<IHeaderProps> = ({
     >
       {showSearchString ? (
         <Grid item xs={3}>
-          <MyInput
-            placeholder="Search"
-            style={{ width: "80%" }}
-            onChange={setSearchString}
-          />
           <button
             style={{
               background: "transparent",
               border: 0,
               cursor: "pointer",
               position: "absolute",
-              left: "68%",
+              zIndex: 10,
+              right: '29%'
             }}
             onClick={() => {
               handleSearchClick();
@@ -85,12 +82,17 @@ const Header: FC<IHeaderProps> = ({
           >
             <img src={SearchIcon} alt="" />
           </button>
+          <MyInput
+            placeholder="Search"
+            style={{ width: "80%", position: 'relative' }}
+            onChange={setSearchString}
+          />
         </Grid>
       ) : (
         <Grid item xs={3}></Grid>
       )}
 
-      <Grid xs={1}>
+      <Grid xs={1} style={{textAlign:'end' }}>
         <button
           style={{ background: "transparent", border: 0, cursor: "pointer" }}
           onClick={() => {}}
@@ -99,7 +101,7 @@ const Header: FC<IHeaderProps> = ({
         </button>
       </Grid>
 
-      <Grid xs={1}>
+      <Grid xs={1} style={{textAlign:'center' }}>
         <button
           style={{ background: "transparent", border: 0, cursor: "pointer" }}
           onClick={() => {}}

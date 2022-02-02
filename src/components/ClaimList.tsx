@@ -132,44 +132,54 @@ const ClaimList = (props: any) => {
             </TableRow>
           </TableHead>
           <TableBody>
-            {(rowsPerPage > 0
-              ? props.data.slice(
-                  page * rowsPerPage,
-                  page * rowsPerPage + rowsPerPage
-                )
-              : props.data
-            ).map((claim: any) => (
-              <ClaimItem
-                id={claim._id}
-                key={claim._id}
-                claimTitle={claim.title}
-                claimCreated={claim.createdAt}
-                claimType={claim.type}
-                claimStatus={claim.status}
-              />
-            ))}
+            {props.data.length > 0 ? (
+              (rowsPerPage > 0
+                ? props.data.slice(
+                    page * rowsPerPage,
+                    page * rowsPerPage + rowsPerPage
+                  )
+                : props.data
+              ).map((claim: any) => (
+                <ClaimItem
+                  id={claim._id}
+                  key={claim._id}
+                  claimTitle={claim.title}
+                  claimCreated={claim.createdAt}
+                  claimType={claim.type}
+                  claimStatus={claim.status}
+                />
+              ))
+            ) : (
+              <TableRow>
+                <TableCell colSpan={5} align="center">
+                  Claims not found
+                </TableCell>
+              </TableRow>
+            )}
           </TableBody>
         </Table>
       </TableContainer>
-      <Grid container justifyContent="end">
-        <TablePagination
-          rowsPerPageOptions={[5, 10, 25, { label: "All", value: -1 }]}
-          colSpan={3}
-          count={props.data.length}
-          rowsPerPage={rowsPerPage}
-          page={page}
-          SelectProps={{
-            inputProps: {
-              "aria-label": "rows per page",
-            },
-            native: true,
-          }}
-          onPageChange={handleChangePage}
-          onRowsPerPageChange={handleChangeRowsPerPage}
-          ActionsComponent={TablePaginationActions}
-          sx={{border:'none'}}
-        />
-      </Grid>
+      {props.data.length > 0 && (
+        <Grid container justifyContent="end">
+          <TablePagination
+            rowsPerPageOptions={[5, 10, 25, { label: "All", value: -1 }]}
+            colSpan={3}
+            count={props.data.length}
+            rowsPerPage={rowsPerPage}
+            page={page}
+            SelectProps={{
+              inputProps: {
+                "aria-label": "rows per page",
+              },
+              native: true,
+            }}
+            onPageChange={handleChangePage}
+            onRowsPerPageChange={handleChangeRowsPerPage}
+            ActionsComponent={TablePaginationActions}
+            sx={{ border: "none" }}
+          />
+        </Grid>
+      )}
     </Grid>
   );
 };

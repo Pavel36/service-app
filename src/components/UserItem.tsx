@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import React, { FC } from "react";
 import { UserRouteNames } from "../router";
 import { userRoles } from "../api/UserService";
+import { dateCustomFormatter } from "../utils/dateFormatter";
 
 interface IUserItemProps {
   id: string;
@@ -50,14 +51,22 @@ const UserItem: FC<IUserItemProps> = ({
   userCreated,
   userUpdeted,
 }) => {
+  let formatCreateDate;
+  let formatUpdateDate;
+  if(userCreated){
+    formatCreateDate = dateCustomFormatter(userCreated)
+  }
+  if(userUpdeted){
+    formatUpdateDate = dateCustomFormatter(userUpdeted)
+  }
   return (
     <TableRow>
-      <TableCell>{userFullname}</TableCell>
-      {userRole ? userRoleSwitch(userRole) : <TableCell></TableCell>}
-      <TableCell>{userEmail}</TableCell>
-      <TableCell>{userCreated}</TableCell>
-      <TableCell>{userUpdeted}</TableCell>
-      <TableCell>
+      <TableCell width='17.5%'>{userFullname}</TableCell>
+      {userRole ? userRoleSwitch(userRole) : <TableCell width='17.5%'></TableCell>}
+      <TableCell width='17.5%'>{userEmail}</TableCell>
+      <TableCell width='17.5%'>{formatCreateDate}</TableCell>
+      <TableCell width='17.5%'>{formatUpdateDate}</TableCell>
+      <TableCell width='17.5%'>
         <Link to={`/users/${id}`} state={id}>
           Browse
         </Link>
