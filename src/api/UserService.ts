@@ -14,6 +14,7 @@ interface IUserData {
 }
 
 export default class UserService {
+  static #baseUrl = "https://mysterious-tundra-84714.herokuapp.com";
   static #apiUrl = "https://mysterious-tundra-84714.herokuapp.com/user";
   static async getAll() {
     let config = {
@@ -59,6 +60,15 @@ export default class UserService {
       },
     };
     const response = await axios.put(url, data, config);
+    return response;
+  }
+  static async getUserRoles() {
+    let config = {
+      headers: {
+        Authorization: getToken(),
+      },
+    };
+    const response = await axios.get(`${this.#baseUrl}/roles`, config);
     return response;
   }
 }

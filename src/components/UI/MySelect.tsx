@@ -1,6 +1,25 @@
-import React from "react";
+import React, { FC } from "react";
+import { FieldError } from "react-hook-form";
 
-const MySelect = (props: any) => {
+interface IMySelectProps {
+  title?: string;
+  register?: any;
+  errors?: FieldError;
+  placeholder?: string;
+  onSelect?: any;
+  defaultValue?: string;
+  options?: any;
+}
+
+const MySelect: FC<IMySelectProps> = ({
+  title,
+  register,
+  errors,
+  placeholder,
+  onSelect,
+  defaultValue,
+  options,
+}) => {
   return (
     <div
       style={{
@@ -18,10 +37,10 @@ const MySelect = (props: any) => {
           letterSpacing: "2.5px",
         }}
       >
-        {props.title}
+        {title}
       </label>
       <select
-        {...props.register}
+        {...register}
         style={{
           background: "#F0F0F0",
           borderRadius: "16px",
@@ -30,17 +49,20 @@ const MySelect = (props: any) => {
           outline: "none",
           width: "100%",
         }}
-        placeholder={props.placeholder}
-        defaultValue={props.defaultValue}
-        onSelect={props.onSelect}
+        placeholder={placeholder}
+        onSelect={onSelect}
+        defaultValue={defaultValue}
       >
-        {props.options.map((option: any) => (
-          <option key={option.slug} value={option.slug}>
+        {options.map((option: any) => (
+          <option
+            key={option.slug}
+            value={option.slug}
+          >
             {option.name}
           </option>
         ))}
       </select>
-      <div>{props.errors && <span>This field is required</span>}</div>
+      <div>{errors && <span>This field is required</span>}</div>
     </div>
   );
 };

@@ -23,6 +23,7 @@ interface IClaimData {
 }
 
 export default class ClaimService {
+  static #baseUrl = "https://mysterious-tundra-84714.herokuapp.com";
   static #apiUrl = "https://mysterious-tundra-84714.herokuapp.com/claim";
   static async getAll() {
     let config = {
@@ -68,6 +69,24 @@ export default class ClaimService {
       },
     };
     const response = await axios.put(url, data, config);
+    return response;
+  }
+  static async getClaimTypes() {
+    let config = {
+      headers: {
+        Authorization: getToken(),
+      },
+    };
+    const response = await axios.get(`${this.#baseUrl}/types`, config);
+    return response;
+  }
+  static async getClaimStatuses() {
+    let config = {
+      headers: {
+        Authorization: getToken(),
+      },
+    };
+    const response = await axios.get(`${this.#baseUrl}/status`, config);
     return response;
   }
 }

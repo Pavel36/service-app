@@ -23,12 +23,16 @@ const EditClaimPage = () => {
   const [type, setType] = useState("");
   const [description, setDescription] = useState("");
   const [status, setStatus] = useState("");
-  const [loading, setLoading] = useState(false);
+  const [claimLoading, setClaimLoading] = useState(false);
   const [editedClaim, setEditedClaim] = useState();
+  const [claimTypes, setClaimTypes] = useState([]);
+  const [claimStatuses, setClaimStatuses] = useState([]);
+  const [typesLoading, setTypesLoading] = useState(false);
+  const [statusesLoading, setStatusesLoading] = useState(false);
   const [error, setError] = useState("");
 
   useEffect(() => {
-    setLoading(true);
+    setClaimLoading(true);
     ClaimService.getClaim(location.state)
       .then((resp) => {
         const claim = resp.data;
@@ -37,11 +41,31 @@ const EditClaimPage = () => {
         setType(claim.type?.name);
         setDescription(claim.description);
         setStatus(claim.status?.name);
-        setLoading(false);
+        setClaimLoading(false);
       })
       .catch((e) => {
         setError("Error claim loading");
-        setLoading(false);
+        setClaimLoading(false);
+      });
+    setTypesLoading(true);
+    ClaimService.getClaimTypes()
+      .then((resp) => {
+        setClaimTypes(resp.data);
+        setTypesLoading(false);
+      })
+      .catch(() => {
+        setError("Claim types was not loaded");
+        setTypesLoading(false);
+      });
+    setStatusesLoading(true);
+    ClaimService.getClaimStatuses()
+      .then((resp) => {
+        setClaimStatuses(resp.data);
+        setStatusesLoading(false);
+      })
+      .catch(() => {
+        setError("Claim statuses was not loaded");
+        setStatusesLoading(false);
       });
   }, []);
 
@@ -66,8 +90,8 @@ const EditClaimPage = () => {
       <Grid style={{ fontSize: 36, fontWeight: 700 }} marginTop={6}>
         Incoming claim
       </Grid>
-      {loading ? (
-        <MyLoader/>
+      {(claimLoading || statusesLoading || typesLoading) ? (
+        <MyLoader />
       ) : (
         <Grid
           container
@@ -93,24 +117,7 @@ const EditClaimPage = () => {
               placeholder="Select type"
               defaultValue={type}
               onSelect={setType}
-              options={[
-                {
-                  name: "Hardware",
-                  slug: "hard",
-                },
-                {
-                  name: "Software",
-                  slug: "soft",
-                },
-                {
-                  name: "Networking",
-                  slug: "net",
-                },
-                {
-                  name: "Troubleshooting",
-                  slug: "troublesh",
-                },
-              ]}
+              options={claimTypes}
             />
           </Grid>
           <Grid style={{ marginTop: 30 }} xs={6}>
@@ -121,24 +128,7 @@ const EditClaimPage = () => {
               placeholder="Select status"
               defaultValue={status}
               onSelect={setStatus}
-              options={[
-                {
-                  name: "Declined",
-                  slug: "decl",
-                },
-                {
-                  name: "New",
-                  slug: "new",
-                },
-                {
-                  name: "Done",
-                  slug: "done",
-                },
-                {
-                  name: "In progress",
-                  slug: "in-progress",
-                },
-              ]}
+              options={claimStatuses}
             />
           </Grid>
           <Grid style={{ marginTop: 30 }} xs={6}>
