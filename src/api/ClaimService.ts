@@ -52,7 +52,7 @@ export default class ClaimService {
     const response = await axios.get(`${this.#apiUrl}?search=${text}`, config);
     return response;
   }
-  static async addClaim(data: any) {
+  static async addClaim(data: IClaimData) {
     let config = {
       headers: {
         Authorization: getToken(),
@@ -61,7 +61,7 @@ export default class ClaimService {
     const response = await axios.post(this.#apiUrl, data, config);
     return response;
   }
-  static async editClaim(id: string, data: any) {
+  static async editClaim(id: string, data: IClaimData) {
     let url = `${this.#apiUrl}/${id}`;
     let config = {
       headers: {

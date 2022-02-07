@@ -3,7 +3,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Resolver, SubmitHandler, useForm } from "react-hook-form";
 import { useNavigate } from "react-router";
-import ClaimService from "../../api/ClaimService";
+import ClaimService, { ClaimStatuses, ClaimTypes } from "../../api/ClaimService";
 import Header from "../../components/Layout/Header";
 import MyButton, { ButtonType } from "../../components/UI/MyButton";
 import MyInput from "../../components/UI/MyInput";
@@ -12,9 +12,9 @@ import MySelect from "../../components/UI/MySelect";
 
 interface FormValues {
   title: string;
-  type: string;
+  type: ClaimTypes;
   description: string;
-  status: string;
+  status: ClaimStatuses;
 }
 
 const AddClaimPage = () => {
@@ -46,7 +46,7 @@ const AddClaimPage = () => {
     formState: { errors },
   } = useForm<FormValues>();
   const onSubmit: SubmitHandler<FormValues> = (data) => {
-    data.status = "new";
+    data.status = ClaimStatuses.new;
     ClaimService.addClaim(data)
       .then(() => {
         navigate(-1);
