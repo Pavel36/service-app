@@ -108,6 +108,7 @@ const EditClaimPage = () => {
               placeholder="Type claim"
               onChange={setTitle}
             />
+            {errors?.title && <p>{errors.title.message}</p>}
           </Grid>
           <Grid style={{ marginTop: 30 }} xs={6}>
             <MySelect
@@ -119,6 +120,7 @@ const EditClaimPage = () => {
               onSelect={setType}
               options={claimTypes}
             />
+            {errors?.type && <p>{errors.type.message}</p>}
           </Grid>
           <Grid style={{ marginTop: 30 }} xs={6}>
             <MySelect
@@ -130,6 +132,7 @@ const EditClaimPage = () => {
               onSelect={setStatus}
               options={claimStatuses}
             />
+            {errors?.status && <p>{errors.status.message}</p>}
           </Grid>
           <Grid style={{ marginTop: 30 }} xs={6}>
             <MyInput

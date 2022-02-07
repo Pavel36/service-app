@@ -60,6 +60,7 @@ const AddUserPage = () => {
             placeholder="Type name"
             onChange={setfullName}
           />
+          {errors?.fullName && <p>{errors.fullName.message}</p>}
         </Grid>
         <Grid style={{ marginTop: 30 }} xs={6}>
           <MyInput
@@ -70,6 +71,7 @@ const AddUserPage = () => {
             placeholder="Type e-mail"
             onChange={setEmail}
           />
+          {errors?.email && <p>{errors.email.message}</p>}
         </Grid>
         <Grid style={{ marginTop: 30 }} xs={6}>
           <MySelect
@@ -90,17 +92,19 @@ const AddUserPage = () => {
               },
             ]}
           />
+          {errors?.role && <p>{errors.role.message}</p>}
         </Grid>
         <Grid style={{ marginTop: 30 }} xs={6}>
           <MyInput
             type="password"
             title="PASSWORD"
             value={password}
-            register={{ ...register("password") }}
+            register={{ ...register("password", { required: true }) }}
             placeholder="Type password"
             onChange={setPassword}
           />
         </Grid>
+        {errors?.password && <p>{errors.password.message}</p>}
         {error && (
           <Grid style={{ marginTop: 30 }} color="#7db59a">
             {error}

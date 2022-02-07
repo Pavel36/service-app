@@ -80,17 +80,19 @@ const AddClaimPage = () => {
               placeholder="Type claim"
               onChange={setTitle}
             />
+            {errors?.title && <p>{errors.title.message}</p>}
           </Grid>
           <Grid style={{ marginTop: 30 }} xs={6}>
             <MySelect
               title="TYPE"
               register={{ ...register("type", { required: true }) }}
-              errors={errors.title}
+              errors={errors.type}
               placeholder="Select type"
               onSelect={setType}
               defaultValue={type}
               options={claimTypes}
             />
+            {errors?.type && <p>{errors.type.message}</p>}
           </Grid>
           <Grid style={{ marginTop: 30 }} xs={6}>
             <MyInput
