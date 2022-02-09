@@ -36,7 +36,7 @@ const MyInput: FC<IMyInputProps> = ({
           fontWeight: 600,
           fontSize: "12px",
           color: "#ADADAD",
-          letterSpacing: '2.5px'
+          letterSpacing: "2.5px",
         }}
       >
         {title}

@@ -6,7 +6,7 @@ interface IMyInputProps {
   color?: string;
 }
 
-const MyLoader: FC<IMyInputProps> = ({ color = "rgb(125, 181, 154)"}) => {
+const MyLoader: FC<IMyInputProps> = ({ color = "rgb(125, 181, 154)" }) => {
   return (
     <Grid xs={12} height="100%" textAlign="center" alignContent="center">
       <Grid paddingTop={10}>

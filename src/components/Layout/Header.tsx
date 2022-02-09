@@ -74,7 +74,7 @@ const Header: FC<IHeaderProps> = ({
               cursor: "pointer",
               position: "absolute",
               zIndex: 10,
-              right: '29%'
+              right: "29%",
             }}
             onClick={() => {
               handleSearchClick();
@@ -84,7 +84,7 @@ const Header: FC<IHeaderProps> = ({
           </button>
           <MyInput
             placeholder="Search"
-            style={{ width: "80%", position: 'relative' }}
+            style={{ width: "80%", position: "relative" }}
             onChange={setSearchString}
           />
         </Grid>
@@ -92,7 +92,7 @@ const Header: FC<IHeaderProps> = ({
         <Grid item xs={3}></Grid>
       )}
 
-      <Grid xs={1} style={{textAlign:'end' }}>
+      <Grid xs={1} style={{ textAlign: "end" }}>
         <button
           style={{ background: "transparent", border: 0, cursor: "pointer" }}
           onClick={() => {}}
@@ -101,7 +101,7 @@ const Header: FC<IHeaderProps> = ({
         </button>
       </Grid>
 
-      <Grid xs={1} style={{textAlign:'center' }}>
+      <Grid xs={1} style={{ textAlign: "center" }}>
         <button
           style={{ background: "transparent", border: 0, cursor: "pointer" }}
           onClick={() => {}}

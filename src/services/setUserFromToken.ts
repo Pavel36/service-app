@@ -5,8 +5,6 @@ export const setUserFromToken = (setUserCallback: any) => {
     let jwt = require("jsonwebtoken");
     let decodedToken = jwt.decode(curToken);
     UserService.getUser(decodedToken.id).then((resp) => {
-        console.log(resp);
-        
       setUserCallback(
         resp.data.email,
         curToken,

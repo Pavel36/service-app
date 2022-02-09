@@ -15,50 +15,53 @@ import Sidebar from "./Layout/Sidebar";
 
 const AppRouter = () => {
   const isAuth = useTypedSelector((state) => state.auth.isAuth);
-  const isAdmin = useTypedSelector((state) => state.auth.user.role_slug === userRoles.administrator);
+  const isAdmin = useTypedSelector(
+    (state) => state.auth.user.role_slug === userRoles.administrator
+  );
   return isAuth ? (
-    isAdmin? 
-    <Grid container>
-      <Grid item xs={1}>
-        <Sidebar />
-      </Grid>
-      <Grid item xs={11} sx={{ paddingRight: 8 }}>
-        <Routes>
-          {adminRoutes.map((route) => (
+    isAdmin ? (
+      <Grid container>
+        <Grid item xs={1}>
+          <Sidebar />
+        </Grid>
+        <Grid item xs={11} sx={{ paddingRight: 8 }}>
+          <Routes>
+            {adminRoutes.map((route) => (
+              <Route
+                path={route.path}
+                element={<route.component />}
+                key={route.path}
+              />
+            ))}
             <Route
-              path={route.path}
-              element={<route.component />}
-              key={route.path}
+              path="*"
+              element={<Navigate to={AdminRouteNames.ALL_USERS} />}
             />
-          ))}
-          <Route
-            path="*"
-            element={<Navigate to={AdminRouteNames.ALL_USERS} />}
-          />
-        </Routes>
+          </Routes>
+        </Grid>
       </Grid>
-    </Grid>
-    :
-    <Grid container>
-      <Grid item xs={1}>
-        <Sidebar />
-      </Grid>
-      <Grid item xs={11} sx={{ paddingRight: 8 }}>
-        <Routes>
-          {userRoutes.map((route) => (
+    ) : (
+      <Grid container>
+        <Grid item xs={1}>
+          <Sidebar />
+        </Grid>
+        <Grid item xs={11} sx={{ paddingRight: 8 }}>
+          <Routes>
+            {userRoutes.map((route) => (
+              <Route
+                path={route.path}
+                element={<route.component />}
+                key={route.path}
+              />
+            ))}
             <Route
-              path={route.path}
-              element={<route.component />}
-              key={route.path}
+              path="*"
+              element={<Navigate to={UserRouteNames.ALL_CLAIMS} />}
             />
-          ))}
-          <Route
-            path="*"
-            element={<Navigate to={UserRouteNames.ALL_CLAIMS} />}
-          />
-        </Routes>
+          </Routes>
+        </Grid>
       </Grid>
-    </Grid>
+    )
   ) : (
     <Grid xs={12}>
       <Routes>

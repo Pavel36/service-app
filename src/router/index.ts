@@ -15,7 +15,7 @@ export interface IRoute {
 }
 
 export enum PublicRouteNames {
-  REGISTRATION ="/registration",
+  REGISTRATION = "/registration",
   LOGIN = "/login",
 }
 
@@ -31,13 +31,12 @@ export enum AdminRouteNames {
   EDIT_CLAIM = "/claims/:claimId",
   ALL_USERS = "/users",
   ADD_USER = "/users/add",
-  EDIT_USER = "/users/:userId"
+  EDIT_USER = "/users/:userId",
 }
-
 
 export const publicRoutes: IRoute[] = [
   { path: PublicRouteNames.REGISTRATION, component: RegistrationPage },
-  { path: PublicRouteNames.LOGIN, component: LoginPage},
+  { path: PublicRouteNames.LOGIN, component: LoginPage },
 ];
 
 export const userRoutes: IRoute[] = [

@@ -53,20 +53,24 @@ const UserItem: FC<IUserItemProps> = ({
 }) => {
   let formatCreateDate;
   let formatUpdateDate;
-  if(userCreated){
-    formatCreateDate = dateCustomFormatter(userCreated)
+  if (userCreated) {
+    formatCreateDate = dateCustomFormatter(userCreated);
   }
-  if(userUpdeted){
-    formatUpdateDate = dateCustomFormatter(userUpdeted)
+  if (userUpdeted) {
+    formatUpdateDate = dateCustomFormatter(userUpdeted);
   }
   return (
     <TableRow>
-      <TableCell width='17.5%'>{userFullname}</TableCell>
-      {userRole ? userRoleSwitch(userRole) : <TableCell width='17.5%'></TableCell>}
-      <TableCell width='17.5%'>{userEmail}</TableCell>
-      <TableCell width='17.5%'>{formatCreateDate}</TableCell>
-      <TableCell width='17.5%'>{formatUpdateDate}</TableCell>
-      <TableCell width='17.5%'>
+      <TableCell width="17.5%">{userFullname}</TableCell>
+      {userRole ? (
+        userRoleSwitch(userRole)
+      ) : (
+        <TableCell width="17.5%"></TableCell>
+      )}
+      <TableCell width="17.5%">{userEmail}</TableCell>
+      <TableCell width="17.5%">{formatCreateDate}</TableCell>
+      <TableCell width="17.5%">{formatUpdateDate}</TableCell>
+      <TableCell width="17.5%">
         <Link to={`/users/${id}`} state={id}>
           Browse
         </Link>

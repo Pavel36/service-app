@@ -54,7 +54,7 @@ const ClaimsPage = () => {
 
       <Grid marginTop="20px">
         {claimsLoading ? (
-          <MyLoader/>
+          <MyLoader />
         ) : error ? (
           <Grid style={{ marginTop: 30 }} color="#7db59a">
             {error}

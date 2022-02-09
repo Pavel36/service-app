@@ -29,8 +29,12 @@ export interface SetUserAction {
 }
 
 export interface SetIsLoadingAction {
-    type: AuthActionEnum.SET_IS_LOADING;
-    payload: boolean;
-  }
+  type: AuthActionEnum.SET_IS_LOADING;
+  payload: boolean;
+}
 
-export type AuthAction = SetAuthAction | SetErrorAction | SetUserAction | SetIsLoadingAction;
+export type AuthAction =
+  | SetAuthAction
+  | SetErrorAction
+  | SetUserAction
+  | SetIsLoadingAction;

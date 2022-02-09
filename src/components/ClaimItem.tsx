@@ -72,7 +72,7 @@ const claimStatusSwitch = (claimStatus: any) => {
   switch (claimStatus.name) {
     case "Declined":
       return (
-        <TableCell width='17.5%'>
+        <TableCell width="17.5%">
           <Chip
             label="DECLINED"
             sx={{ color: "#FFFFFF", backgroundColor: "#E84393" }}
@@ -81,7 +81,7 @@ const claimStatusSwitch = (claimStatus: any) => {
       );
     case "New":
       return (
-        <TableCell width='17.5%'>
+        <TableCell width="17.5%">
           <Chip
             label="NEW"
             sx={{ color: "#FFFFFF", backgroundColor: "#6C5CE7" }}
@@ -90,7 +90,7 @@ const claimStatusSwitch = (claimStatus: any) => {
       );
     case "In progress":
       return (
-        <TableCell width='17.5%'>
+        <TableCell width="17.5%">
           <Chip
             label="IN PROGRESS"
             sx={{ color: "#FFFFFF", backgroundColor: "#FDCB6E" }}
@@ -99,7 +99,7 @@ const claimStatusSwitch = (claimStatus: any) => {
       );
     case "Done":
       return (
-        <TableCell width='17.5%'>
+        <TableCell width="17.5%">
           <Chip
             label="DONE"
             sx={{ color: "#FFFFFF", backgroundColor: "#00B894" }}
@@ -117,10 +117,10 @@ const ClaimItem: FC<IClaimItemProps> = ({
   claimStatus,
 }) => {
   let formatDate;
-  if(claimCreated){
-    formatDate = dateCustomFormatter(claimCreated)
+  if (claimCreated) {
+    formatDate = dateCustomFormatter(claimCreated);
   }
-  
+
   return (
     <TableRow>
       <TableCell width="30%">{claimTitle}</TableCell>

@@ -51,9 +51,16 @@ const LoginPage = () => {
           sx={{ background: "#D3EDE1F7", padding: 8 }}
           xs={7}
         >
-          <img src={welcomeImg} alt=""/>
+          <img src={welcomeImg} alt="" />
         </Grid>
-        <Grid container direction="column" justifyContent="center" alignItems="center" xs={3} marginLeft={15}>
+        <Grid
+          container
+          direction="column"
+          justifyContent="center"
+          alignItems="center"
+          xs={3}
+          marginLeft={15}
+        >
           <Grid item>
             <img src={mainLogo} alt="" />
           </Grid>
@@ -70,7 +77,7 @@ const LoginPage = () => {
                 type="email"
                 placeholder="Type your e-mail"
                 register={{ ...register("email") }}
-                style={{width:'100%'}}
+                style={{ width: "100%" }}
               />
             </Grid>
 

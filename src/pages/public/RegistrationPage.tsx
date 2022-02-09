@@ -95,11 +95,15 @@ const RegistrationPage = () => {
                 title="NAME"
                 type="text"
                 placeholder="Type your name"
-                register={{ ...register("fullName")}}
+                register={{ ...register("fullName") }}
               />
             </Grid>
 
-            {error && <Grid item paddingTop={3} color="#7db59a">{error}</Grid>}
+            {error && (
+              <Grid item paddingTop={3} color="#7db59a">
+                {error}
+              </Grid>
+            )}
 
             <Grid item paddingTop={3}>
               <MyButton

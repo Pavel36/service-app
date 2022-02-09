@@ -54,10 +54,7 @@ const MySelect: FC<IMySelectProps> = ({
         defaultValue={defaultValue}
       >
         {options.map((option: any) => (
-          <option
-            key={option.slug}
-            value={option.slug}
-          >
+          <option key={option.slug} value={option.slug}>
             {option.name}
           </option>
         ))}

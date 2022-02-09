@@ -54,7 +54,7 @@ const UsersPage = () => {
       </Grid>
       <Grid marginTop="20px">
         {usersLoading ? (
-         <MyLoader/>
+          <MyLoader />
         ) : error ? (
           <Grid style={{ marginTop: 30 }} color="#7db59a">
             {error}

@@ -27,14 +27,14 @@ export const AuthActionCreators = {
   }),
   register: (data: any) => async (dispatch: AppDispatch) => {
     dispatch(AuthActionCreators.setIsLoading(true));
-    AuthService.register(data).then((resp) => {
-      console.log(localStorage.getItem("token"));
-      dispatch(AuthActionCreators.setIsLoading(false));
-    })
-    .catch((e)=>{
-      dispatch(AuthActionCreators.setError("Registration error"));
-      dispatch(AuthActionCreators.setIsLoading(false));
-    });
+    AuthService.register(data)
+      .then((resp) => {
+        dispatch(AuthActionCreators.setIsLoading(false));
+      })
+      .catch((e) => {
+        dispatch(AuthActionCreators.setError("Registration error"));
+        dispatch(AuthActionCreators.setIsLoading(false));
+      });
   },
   login: (data: any) => async (dispatch: AppDispatch) => {
     dispatch(AuthActionCreators.setIsLoading(true));
@@ -49,7 +49,6 @@ export const AuthActionCreators = {
         };
         localStorage.setItem("auth", "true");
         localStorage.setItem("token", resp.data.token);
-        console.log(localStorage.getItem("token"));
 
         dispatch(AuthActionCreators.setUser(user));
         dispatch(AuthActionCreators.setIsAuth(true));

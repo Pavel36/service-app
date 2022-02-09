@@ -3,7 +3,7 @@ import { getToken } from "../services/getToken";
 
 export enum userRoles {
   worker = "work",
-  administrator = "admin"
+  administrator = "admin",
 }
 
 interface IUserData {
