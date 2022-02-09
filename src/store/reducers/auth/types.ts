@@ -4,7 +4,6 @@ export interface AuthState {
   user: IUser;
   isLoading: boolean;
   error: string;
-  keepMeLogged: boolean;
 }
 
 export enum AuthActionEnum {
@@ -12,16 +11,10 @@ export enum AuthActionEnum {
   SET_ERROR = "SET_ERROR",
   SET_USER = "SET_USER",
   SET_IS_LOADING = "SET_IS_LOADING",
-  SET_KEEP_ME_LOGGED = "SET_KEEP_ME_LOGGED",
 }
 
 export interface SetAuthAction {
   type: AuthActionEnum.SET_AUTH;
-  payload: boolean;
-}
-
-export interface SetKeepMeLoggedAction {
-  type: AuthActionEnum.SET_KEEP_ME_LOGGED;
   payload: boolean;
 }
 
@@ -44,5 +37,4 @@ export type AuthAction =
   | SetAuthAction
   | SetErrorAction
   | SetUserAction
-  | SetIsLoadingAction
-  | SetKeepMeLoggedAction;
+  | SetIsLoadingAction;

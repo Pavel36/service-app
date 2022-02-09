@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React from "react";
 import welcomeImg from "../../assets/welcome.png";
 import mainLogo from "../../assets/Group4.svg";
 import footerLogo from "../../assets/Group5.svg";
@@ -34,17 +34,15 @@ const resolver: Resolver<FormValues> = async (values) => {
 const LoginPage = () => {
   const dispatch = useDispatch();
   const { error, isLoading } = useTypedSelector((state) => state.auth);
-  const checkboxRef = useRef<HTMLInputElement>(null);
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm<FormValues>({ resolver });
-  const onSubmit = handleSubmit((data) => {
-    checkboxRef.current?.checked &&
-      dispatch(AuthActionCreators.setKeepMeLogged(checkboxRef.current.checked));
-    dispatch(AuthActionCreators.login(data));
-  });
+  const onSubmit = handleSubmit((data) =>
+    dispatch(AuthActionCreators.login(data))
+  );
+
   return (
     <Grid>
       <Grid container direction="row">
@@ -99,7 +97,7 @@ const LoginPage = () => {
                   color: "#ADADAD",
                 }}
               >
-                <input type="checkbox" ref={checkboxRef} />
+                <input type="checkbox" />
                 Keep me logged in
               </label>
             </Grid>
