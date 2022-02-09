@@ -5,6 +5,7 @@ import {
   SetUserAction,
   SetIsLoadingAction,
   SetErrorAction,
+  SetKeepMeLoggedAction,
 } from "./types";
 import { IUser } from "./../../../models/IUser";
 import AuthService from "../../../api/AuthService";
@@ -23,6 +24,10 @@ export const AuthActionCreators = {
   }),
   setError: (payload: string): SetErrorAction => ({
     type: AuthActionEnum.SET_ERROR,
+    payload,
+  }),
+  setKeepMeLogged: (payload: boolean): SetKeepMeLoggedAction => ({
+    type: AuthActionEnum.SET_KEEP_ME_LOGGED,
     payload,
   }),
   register: (data: any) => async (dispatch: AppDispatch) => {
