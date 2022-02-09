@@ -23,20 +23,24 @@ const AddUserPage = () => {
   const [password, setPassword] = useState("");
   const [role, setRole] = useState<userRoles>(userRoles.worker);
   const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm<FormValues>();
-  const onSubmit: SubmitHandler<FormValues> = async (data) => {
-    await UserService.addUser(data)
+  const onSubmit: SubmitHandler<FormValues> = (data) => {
+    setLoading(true);
+    UserService.addUser(data)
       .then(() => {
         navigate(-1);
+        setLoading(false);
       })
       .catch((e) => {
         setError("User was not added");
-      });
+        setLoading(false);
+      })
   };
 
   return (
@@ -123,7 +127,11 @@ const AddUserPage = () => {
             />
           </Grid>
           <Grid item>
-            <MyButton value="Done" type={ButtonType.submit} />
+            <MyButton
+              value="Done"
+              type={ButtonType.submit}
+              disabled={loading}
+            />
           </Grid>
         </Grid>
       </Grid>

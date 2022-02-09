@@ -16,14 +16,15 @@ interface FormValues {
   role: userRoles;
 }
 
-const EditUserPage = (props: any) => {
+const EditUserPage = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const [fullName, setFullName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [role, setRole] = useState<userRoles>(userRoles.worker);
-  const [loading, setLoading] = useState(true);
+  const [userLoading, setUserLoading] = useState(true);
+  const [applyСhangesLoader, setApplyСhangesLoader] = useState(false);
   const [editedUser, setEditedUser] = useState();
   const [error, setError] = useState("");
 
@@ -35,11 +36,11 @@ const EditUserPage = (props: any) => {
         setFullName(user.fullName);
         setEmail(user.email);
         setRole(user.role);
-        setLoading(false);
+        setUserLoading(false);
       })
       .catch((e) => {
         setError("Error user loading");
-        setLoading(false);
+        setUserLoading(false);
       });
   }, []);
 
@@ -49,12 +50,15 @@ const EditUserPage = (props: any) => {
     formState: { errors },
   } = useForm<FormValues>();
   const onSubmit: SubmitHandler<FormValues> = async (data) => {
+    setApplyСhangesLoader(true);
     await UserService.editUser(location.state, data)
       .then(() => {
         navigate(-1);
+        setApplyСhangesLoader(false);
       })
       .catch((e) => {
         setError("User was not edited");
+        setApplyСhangesLoader(false);
       });
   };
 
@@ -64,7 +68,7 @@ const EditUserPage = (props: any) => {
       <Grid style={{ fontSize: 36, fontWeight: 700 }} marginTop={6}>
         Edit user
       </Grid>
-      {loading ? (
+      {userLoading ? (
         <MyLoader />
       ) : (
         <Grid
@@ -141,7 +145,7 @@ const EditUserPage = (props: any) => {
               />
             </Grid>
             <Grid item>
-              <MyButton value="Done" type={ButtonType.submit} />
+              <MyButton value="Done" type={ButtonType.submit} disabled={applyСhangesLoader}/>
             </Grid>
           </Grid>
         </Grid>

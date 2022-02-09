@@ -49,7 +49,7 @@ const MyInput: FC<IMyInputProps> = ({
           border: "none",
           padding: 13,
           outline: "none",
-          width: "100%",
+          width: "-webkit-fill-available",
           ...style,
         }}
         type={type}

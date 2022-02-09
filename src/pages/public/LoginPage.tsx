@@ -77,7 +77,6 @@ const LoginPage = () => {
                 type="email"
                 placeholder="Type your e-mail"
                 register={{ ...register("email") }}
-                style={{ width: "100%" }}
               />
             </Grid>
 
