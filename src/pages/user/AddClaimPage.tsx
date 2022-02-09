@@ -1,9 +1,11 @@
 import { Grid } from "@mui/material";
-import axios from "axios";
-import React, { useEffect, useState } from "react";
-import { Resolver, SubmitHandler, useForm } from "react-hook-form";
+import { useEffect, useState } from "react";
+import { SubmitHandler, useForm } from "react-hook-form";
 import { useNavigate } from "react-router";
-import ClaimService, { ClaimStatuses, ClaimTypes } from "../../api/ClaimService";
+import ClaimService, {
+  ClaimStatuses,
+  ClaimTypes,
+} from "../../api/ClaimService";
 import Header from "../../components/Layout/Header";
 import MyButton, { ButtonType } from "../../components/UI/MyButton";
 import MyInput from "../../components/UI/MyInput";
@@ -24,14 +26,13 @@ const AddClaimPage = () => {
   const [description, setDescription] = useState("");
   const [error, setError] = useState("");
   const [claimTypes, setClaimTypes] = useState([]);
-  const [typesLoading, setTypesLoading] = useState(false);
+  const [typesLoading, setTypesLoading] = useState(true);
 
   useEffect(() => {
-    setTypesLoading(true);
     ClaimService.getClaimTypes()
       .then((resp) => {
         setClaimTypes(resp.data);
-        setType(resp.data[0].slug)
+        setType(resp.data[0].slug);
         setTypesLoading(false);
       })
       .catch(() => {

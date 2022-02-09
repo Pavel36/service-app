@@ -2,7 +2,10 @@ import { Grid } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { useLocation, useNavigate } from "react-router-dom";
-import ClaimService, { ClaimStatuses, ClaimTypes } from "../../api/ClaimService";
+import ClaimService, {
+  ClaimStatuses,
+  ClaimTypes,
+} from "../../api/ClaimService";
 import Header from "../../components/Layout/Header";
 import MyButton, { ButtonType } from "../../components/UI/MyButton";
 import MyInput from "../../components/UI/MyInput";
@@ -23,24 +26,23 @@ const EditClaimPage = () => {
   const [type, setType] = useState("");
   const [description, setDescription] = useState("");
   const [status, setStatus] = useState("");
-  const [claimLoading, setClaimLoading] = useState(false);
+  const [claimLoading, setClaimLoading] = useState(true);
   const [editedClaim, setEditedClaim] = useState();
   const [claimTypes, setClaimTypes] = useState([]);
   const [claimStatuses, setClaimStatuses] = useState([]);
-  const [typesLoading, setTypesLoading] = useState(false);
-  const [statusesLoading, setStatusesLoading] = useState(false);
+  const [typesLoading, setTypesLoading] = useState(true);
+  const [statusesLoading, setStatusesLoading] = useState(true);
   const [error, setError] = useState("");
 
   useEffect(() => {
-    setClaimLoading(true);
     ClaimService.getClaim(location.state)
       .then((resp) => {
         const claim = resp.data;
         setEditedClaim(claim);
         setTitle(claim.title);
-        setType(claim.type?.name);
+        setType(claim.type?.slug);
         setDescription(claim.description);
-        setStatus(claim.status?.name);
+        setStatus(claim.status?.slug);
         setClaimLoading(false);
       })
       .catch((e) => {
@@ -90,7 +92,7 @@ const EditClaimPage = () => {
       <Grid style={{ fontSize: 36, fontWeight: 700 }} marginTop={6}>
         Incoming claim
       </Grid>
-      {(claimLoading || statusesLoading || typesLoading) ? (
+      {claimLoading || statusesLoading || typesLoading ? (
         <MyLoader />
       ) : (
         <Grid

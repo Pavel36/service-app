@@ -23,12 +23,11 @@ const EditUserPage = (props: any) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [role, setRole] = useState<userRoles>(userRoles.worker);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [editedUser, setEditedUser] = useState();
   const [error, setError] = useState("");
 
   useEffect(() => {
-    setLoading(true);
     UserService.getUser(location.state)
       .then((resp) => {
         const user = resp.data;
