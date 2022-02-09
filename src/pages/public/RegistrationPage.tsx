@@ -55,7 +55,7 @@ const RegistrationPage = () => {
           sx={{ background: "#D3EDE1F7", padding: 8 }}
           md={6}
         >
-          <img src={welcomeImg} style={{ width: "90%" }} alt="" />
+          <img src={welcomeImg} alt="" />
         </Grid>
         <Grid
           container
