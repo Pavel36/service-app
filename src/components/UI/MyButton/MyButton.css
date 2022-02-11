@@ -1,0 +1,19 @@
+.button_disabled {
+    color: #FFF;
+    background-color: #B5D3C5;
+    border-radius: 16px;
+    cursor: pointer;
+    border: none;
+    font-size: 18px;
+    padding: 10px 20px;
+}
+
+.button_enabled {
+    color: #FFF;
+    background-color: #7DB59A;
+    border-radius: 16px;
+    cursor: pointer;
+    border: none;
+    font-size: 18px;
+    padding: 10px 20px;
+}

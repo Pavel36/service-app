@@ -1,6 +1,7 @@
 import React, { FC, HTMLInputTypeAttribute } from "react";
 import { FieldError } from "react-hook-form";
 import { InputType } from "zlib";
+import "./MyInput.css"
 
 interface IMyInputProps {
   value?: string;
@@ -31,25 +32,14 @@ const MyInput: FC<IMyInputProps> = ({
   return (
     <div style={{ display: "inline-block", float: "left", width: "100%" }}>
       <label
-        style={{
-          display: "block",
-          fontWeight: 600,
-          fontSize: "12px",
-          color: "#ADADAD",
-          letterSpacing: "2.5px",
-        }}
+        className="label"
       >
         {title}
       </label>
       <input
         {...register}
+        className="input"
         style={{
-          background: "#F0F0F0",
-          borderRadius: "16px",
-          border: "none",
-          padding: 13,
-          outline: "none",
-          width: "-webkit-fill-available",
           ...style,
         }}
         type={type}

@@ -1,5 +1,6 @@
 import React, { FC } from "react";
 import { FieldError } from "react-hook-form";
+import "./MySelect.css"
 
 interface IMySelectProps {
   title?: string;
@@ -22,33 +23,16 @@ const MySelect: FC<IMySelectProps> = ({
 }) => {
   return (
     <div
-      style={{
-        display: "inline-block",
-        float: "left",
-        width: "100%",
-      }}
+      className="select-wrapper"
     >
       <label
-        style={{
-          display: "block",
-          fontWeight: 600,
-          fontSize: "12px",
-          color: "#ADADAD",
-          letterSpacing: "2.5px",
-        }}
+        className="select-wrapper__label"
       >
         {title}
       </label>
       <select
         {...register}
-        style={{
-          background: "#F0F0F0",
-          borderRadius: "16px",
-          padding: 13,
-          border: "none",
-          outline: "none",
-          width: "100%",
-        }}
+        className="select-wrapper__select"
         placeholder={placeholder}
         onSelect={onSelect}
         defaultValue={defaultValue}

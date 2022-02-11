@@ -1,4 +1,5 @@
 import React, { FC } from "react";
+import "./MyButton.css"
 
 export enum ButtonType {
   button = "button",
@@ -24,15 +25,9 @@ const MyButton: FC<IMyButtonProps> = ({
   return disabled ? (
     <button
       style={{
-        color: "#FFF",
-        backgroundColor: "#B5D3C5",
-        borderRadius: "16px",
-        cursor: "pointer",
-        border: "none",
-        fontSize: 18,
-        padding: "10px 20px",
         ...style,
       }}
+      className="button_disabled"
       type={type}
       disabled={disabled}
       onClick={onClick}
@@ -42,15 +37,9 @@ const MyButton: FC<IMyButtonProps> = ({
   ) : (
     <button
       style={{
-        color: "#FFF",
-        backgroundColor: "#7DB59A",
-        borderRadius: "16px",
-        cursor: "pointer",
-        border: "none",
-        fontSize: 18,
-        padding: "10px 20px",
         ...style,
       }}
+      className="button_enabled"
       type={type}
       disabled={disabled}
       onClick={onClick}
