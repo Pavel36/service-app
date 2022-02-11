@@ -12,8 +12,7 @@ function App() {
     if (localStorage.getItem("auth")) {
       checkToken(
         () => dispatch(AuthActionCreators.logout()),
-        () => dispatch(AuthActionCreators.setIsAuth(true)),
-        () => setUserFromToken(() => dispatch(AuthActionCreators.setUser))
+        () => dispatch(AuthActionCreators.setIsAuth(true))
       );
     }
   });

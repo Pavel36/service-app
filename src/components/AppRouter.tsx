@@ -15,9 +15,7 @@ import Sidebar from "./Layout/Sidebar";
 
 const AppRouter = () => {
   const isAuth = useTypedSelector((state) => state.auth.isAuth);
-  const isAdmin = useTypedSelector(
-    (state) => state.auth.user.role_slug === userRoles.administrator
-  );
+  const isAdmin = localStorage.getItem("role") === userRoles.administrator;
   return isAuth ? (
     isAdmin ? (
       <Grid container>

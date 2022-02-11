@@ -1,8 +1,7 @@
 import { IUser } from "./../models/IUser";
 export const checkToken = (
   logoutCallback: any,
-  dispatchCallback: any,
-  setUserFromToken: () => void
+  dispatchIsAuth: any,
 ) => {
   if (localStorage.getItem("token")) {
     const curToken = localStorage.getItem("token");
@@ -12,8 +11,7 @@ export const checkToken = (
     if (decodedToken.exp < dateNow.getTime() / 1000) {
       logoutCallback();
     } else {
-      dispatchCallback();
-      const user = setUserFromToken();
+      dispatchIsAuth(true);
     }
   }
 };

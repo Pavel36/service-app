@@ -7,7 +7,6 @@ export const setUserFromToken = (setUserCallback: any) => {
     UserService.getUser(decodedToken.id).then((resp) => {
       setUserCallback(
         resp.data.email,
-        curToken,
         resp.data.role.name,
         resp.data.role.slug,
         resp.data.fullName

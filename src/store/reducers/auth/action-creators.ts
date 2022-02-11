@@ -42,13 +42,13 @@ export const AuthActionCreators = {
       .then((resp) => {
         let user: IUser = {
           email: resp.data.email,
-          token: resp.data.token,
           role: resp.data.role.name,
           role_slug: resp.data.role.slug,
           fullName: resp.data.fullName,
         };
         localStorage.setItem("auth", "true");
         localStorage.setItem("token", resp.data.token);
+        localStorage.setItem("role", resp.data.role.slug)
 
         dispatch(AuthActionCreators.setUser(user));
         dispatch(AuthActionCreators.setIsAuth(true));
