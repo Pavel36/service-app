@@ -8,13 +8,12 @@ import {
   TableHead,
   TableContainer,
   Paper,
-  TableFooter,
   TablePagination,
   IconButton,
 } from "@mui/material";
 import { Box } from "@mui/system";
 import React, { useState } from "react";
-import ClaimItem from "./ClaimItem";
+import ClaimItem from "./ClaimItem/ClaimItem";
 import FirstPageIcon from "@mui/icons-material/FirstPage";
 import KeyboardArrowLeft from "@mui/icons-material/KeyboardArrowLeft";
 import KeyboardArrowRight from "@mui/icons-material/KeyboardArrowRight";

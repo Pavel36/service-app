@@ -4,12 +4,12 @@ import mainLogo from "../../assets/Group4.svg";
 import footerLogo from "../../assets/Group5.svg";
 import { Grid } from "@mui/material";
 import { Link } from "react-router-dom";
-import MyButton, { ButtonType } from "../../components/UI/MyButton";
+import MyButton, { ButtonType } from "../../components/UI/MyButton/MyButton";
 import { useForm, Resolver } from "react-hook-form";
 import { useDispatch } from "react-redux";
 import { AuthActionCreators } from "../../store/reducers/auth/action-creators";
 import { useTypedSelector } from "../../hooks/useTypedSelector";
-import MyInput from "../../components/UI/MyInput";
+import MyInput from "../../components/UI/MyInput/MyInput";
 import { PublicRouteNames } from "../../router";
 
 interface FormValues {

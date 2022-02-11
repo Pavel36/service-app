@@ -6,7 +6,7 @@ import BellIcon from "../../assets/icon-bell.svg";
 import SearchIcon from "../../assets/icon-search.svg";
 import { useDispatch } from "react-redux";
 import { AuthActionCreators } from "../../store/reducers/auth/action-creators";
-import MyInput from "../UI/MyInput";
+import MyInput from "../UI/MyInput/MyInput";
 import ClaimService from "../../api/ClaimService";
 import UserService from "../../api/UserService";
 

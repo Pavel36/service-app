@@ -5,9 +5,9 @@ import { Resolver, SubmitHandler, useForm } from "react-hook-form";
 import { useNavigate } from "react-router";
 import UserService, { userRoles } from "../../api/UserService";
 import Header from "../../components/Layout/Header";
-import MyButton, { ButtonType } from "../../components/UI/MyButton";
-import MyInput from "../../components/UI/MyInput";
-import MySelect from "../../components/UI/MySelect";
+import MyButton, { ButtonType } from "../../components/UI/MyButton/MyButton";
+import MyInput from "../../components/UI/MyInput/MyInput";
+import MySelect from "../../components/UI/MySelect/MySelect";
 
 interface FormValues {
   fullName: string;

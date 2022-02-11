@@ -7,10 +7,10 @@ import ClaimService, {
   ClaimTypes,
 } from "../../api/ClaimService";
 import Header from "../../components/Layout/Header";
-import MyButton, { ButtonType } from "../../components/UI/MyButton";
-import MyInput from "../../components/UI/MyInput";
-import MyLoader from "../../components/UI/MyLoader";
-import MySelect from "../../components/UI/MySelect";
+import MyButton, { ButtonType } from "../../components/UI/MyButton/MyButton";
+import MyInput from "../../components/UI/MyInput/MyInput";
+import MyLoader from "../../components/UI/MyLoader/MyLoader";
+import MySelect from "../../components/UI/MySelect/MySelect";
 
 interface FormValues {
   title: string;

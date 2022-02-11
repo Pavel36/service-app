@@ -1,8 +1,8 @@
 import { Chip, Grid, TableCell, TableRow } from "@mui/material";
 import { Link } from "react-router-dom";
 import React, { FC } from "react";
-import { UserRouteNames } from "../router";
-import { dateCustomFormatter } from "../utils/dateFormatter";
+import { dateCustomFormatter } from "../../utils/dateFormatter";
+import './ClaimItem.css'
 
 enum claimTypes {
   Hardware,
@@ -32,7 +32,7 @@ const claimTypeSwitch = (claimType: any) => {
       return (
         <TableCell>
           <Grid container direction="row">
-            <Grid sx={{ color: "#7DB59A", marginRight: "2px" }}>●</Grid>
+            <Grid className="table-cell__label_hardware">●</Grid>
             <Grid>Hardware</Grid>
           </Grid>
         </TableCell>
@@ -42,7 +42,7 @@ const claimTypeSwitch = (claimType: any) => {
       return (
         <TableCell>
           <Grid container direction="row">
-            <Grid sx={{ color: "#FF7675", marginRight: "2px" }}>●</Grid>
+            <Grid className="table-cell__label_software">●</Grid>
             <Grid>Software</Grid>
           </Grid>
         </TableCell>
@@ -51,7 +51,7 @@ const claimTypeSwitch = (claimType: any) => {
       return (
         <TableCell>
           <Grid container direction="row">
-            <Grid sx={{ color: "#6C5CE7", marginRight: "2px" }}>●</Grid>
+            <Grid className="table-cell__label_troubleshooting">●</Grid>
             <Grid>Troubleshooting</Grid>
           </Grid>
         </TableCell>
@@ -60,7 +60,7 @@ const claimTypeSwitch = (claimType: any) => {
       return (
         <TableCell>
           <Grid container direction="row">
-            <Grid sx={{ color: "#FDCB6E", marginRight: "2px" }}>●</Grid>
+            <Grid className="table-cell__label_networking">●</Grid>
             <Grid>Networking</Grid>
           </Grid>
         </TableCell>
@@ -72,37 +72,37 @@ const claimStatusSwitch = (claimStatus: any) => {
   switch (claimStatus.name) {
     case "Declined":
       return (
-        <TableCell width="17.5%">
+        <TableCell className="table-cell">
           <Chip
             label="DECLINED"
-            sx={{ color: "#FFFFFF", backgroundColor: "#E84393" }}
+            sx={{ color: "#FFFFFF", backgroundColor: "#E84393", width:"70%" }}
           />
         </TableCell>
       );
     case "New":
       return (
-        <TableCell width="17.5%">
+        <TableCell className="table-cell">
           <Chip
             label="NEW"
-            sx={{ color: "#FFFFFF", backgroundColor: "#6C5CE7" }}
+            sx={{ color: "#FFFFFF", backgroundColor: "#6C5CE7", width:"70%" }}
           />
         </TableCell>
       );
     case "In progress":
       return (
-        <TableCell width="17.5%">
+        <TableCell className="table-cell">
           <Chip
             label="IN PROGRESS"
-            sx={{ color: "#FFFFFF", backgroundColor: "#FDCB6E" }}
+            sx={{ color: "#FFFFFF", backgroundColor: "#FDCB6E", width:"70%" }}
           />
         </TableCell>
       );
     case "Done":
       return (
-        <TableCell width="17.5%">
+        <TableCell className="table-cell">
           <Chip
             label="DONE"
-            sx={{ color: "#FFFFFF", backgroundColor: "#00B894" }}
+            sx={{ color: "#FFFFFF", backgroundColor: "#00B894", width:"70%" }}
           />
         </TableCell>
       );
@@ -122,16 +122,16 @@ const ClaimItem: FC<IClaimItemProps> = ({
   }
 
   return (
-    <TableRow>
+    <TableRow className="claimItem" >
       <TableCell width="30%">{claimTitle}</TableCell>
-      <TableCell width="17.5%">{formatDate}</TableCell>
+      <TableCell className="table-cell">{formatDate}</TableCell>
 
       {claimType ? (
         claimTypeSwitch(claimType)
       ) : (
-        <TableCell width="17.5%">
+        <TableCell className="table-cell">
           <Grid container direction="row">
-            <Grid sx={{ color: "#f0f0f0", marginRight: "2px" }}>●</Grid>
+            <Grid className="table-cell__label_none">●</Grid>
             <Grid>None</Grid>
           </Grid>
         </TableCell>
@@ -139,12 +139,12 @@ const ClaimItem: FC<IClaimItemProps> = ({
       {claimStatus ? (
         claimStatusSwitch(claimStatus)
       ) : (
-        <TableCell width="17.5%">
-          <Chip label="NONE" sx={{ backgroundColor: "#f0f0f0" }} />
+        <TableCell className="table-cell">
+          <Chip label="NONE" sx={{ backgroundColor: "#f0f0f0", width:"70%" }}/>
         </TableCell>
       )}
 
-      <TableCell width="17.5%">
+      <TableCell className="table-cell">
         <Link to={`/claims/${id}`} state={id}>
           Browse
         </Link>

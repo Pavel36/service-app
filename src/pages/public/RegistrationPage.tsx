@@ -7,8 +7,8 @@ import { useForm, Resolver } from "react-hook-form";
 import { useDispatch } from "react-redux";
 import { AuthActionCreators } from "../../store/reducers/auth/action-creators";
 import { useTypedSelector } from "../../hooks/useTypedSelector";
-import MyInput from "../../components/UI/MyInput";
-import MyButton, { ButtonType } from "../../components/UI/MyButton";
+import MyInput from "../../components/UI/MyInput/MyInput";
+import MyButton, { ButtonType } from "../../components/UI/MyButton/MyButton";
 import { useNavigate } from "react-router";
 import { PublicRouteNames } from "../../router";
 

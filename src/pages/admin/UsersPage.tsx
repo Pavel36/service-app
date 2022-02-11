@@ -1,12 +1,12 @@
 import { Grid } from "@mui/material";
 import React, { useState, useEffect } from "react";
 import UserService, { userRoles } from "../../api/UserService";
-import MyButton from "../../components/UI/MyButton";
+import MyButton from "../../components/UI/MyButton/MyButton";
 import { useNavigate } from "react-router";
 import { AdminRouteNames, UserRouteNames } from "../../router";
 import Header, { HeaderSearchType } from "../../components/Layout/Header";
 import UserList from "../../components/UserList";
-import MyLoader from "../../components/UI/MyLoader";
+import MyLoader from "../../components/UI/MyLoader/MyLoader";
 
 const UsersPage = () => {
   const navigate = useNavigate();

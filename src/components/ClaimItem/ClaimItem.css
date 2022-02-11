@@ -1,0 +1,62 @@
+.claimItem:hover {
+  background-color: #c5e3d4;
+}
+
+.table-cell {
+  width: 17.5%;
+}
+
+.table-cell__label_hardware,
+.table-cell__label_software,
+.table-cell__label_troubleshooting,
+.table-cell__label_networking,
+.table-cell__label_none {
+  margin-right: 2px;
+}
+
+.table-cell__label_hardware {
+  color: #7db59a;
+}
+
+.table-cell__label_software {
+  color: #ff7675;
+}
+
+.table-cell__label_troubleshooting {
+  color: #6c5ce7;
+}
+
+.table-cell__label_networking {
+  color: #fdcb6e;
+}
+
+.table-cell__label_none {
+  color: #f0f0f0;
+}
+
+.table-cell__chip_declined,
+.table-cell__chip_new,
+.table-cell__chip_in-progress,
+.table-cell__chip_done {
+  color: #ffffff;
+}
+
+.table-cell__chip_declined {
+  background-color: #e84393;
+  width: 70%;
+}
+
+.table-cell__chip_new {
+  background-color: #6c5ce7;
+  width: 70%;
+}
+
+.table-cell__chip_in-progress {
+  background-color: #fdcb6e;
+  width: 70%;
+}
+
+.table-cell__chip_done {
+  background-color: #00b894;
+  width: 70%;
+}
