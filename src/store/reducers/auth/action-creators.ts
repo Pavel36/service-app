@@ -60,8 +60,7 @@ export const AuthActionCreators = {
       });
   },
   logout: () => async (dispatch: AppDispatch) => {
-    localStorage.removeItem("auth");
-    localStorage.removeItem("token");
+    localStorage.clear();
     dispatch(AuthActionCreators.setUser({} as IUser));
     dispatch(AuthActionCreators.setIsAuth(false));
   },
